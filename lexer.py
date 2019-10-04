@@ -46,10 +46,14 @@ class LexerAnalysis(Lexer):
         self.lineno += t.value.count('\n')
 
     def error(self, t):
-        print('Line %d: Bad character %r'% (self.lineno, t.value[0]))
+        print('Line %d: Bad character %r' % (self.lineno, t.value[0]))
+
 
 def main():
-    data = open("")
+    data = open("Input/allofsymbols.in")
+    lexer = LexerAnalysis()
+    for tok in lexer.tokenize(data):
+        print(tok)
 
 if __name__ == '__main__':
     main()
