@@ -1,6 +1,6 @@
 int main(void)
 {
-  int x; /* declaração de x*/
+  int x; /* declaracao de x*/
   int y[3];
   int z;
   x = 5;

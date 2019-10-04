@@ -3,14 +3,19 @@ from sly import Lexer
 
 class LexerAnalysis(Lexer):
     # Set of token names. This is always required
-    tokens = {NUMBER, ID, WHILE, IF, ELSE, PRINT, RETURN, PLUS, MINUS, TIMES,
+    tokens = {NUMBER, ID, WHILE, IF, ELSE, PRINT, RETURN, VOID, INT, PLUS, MINUS, TIMES,
               PLUS, MINUS, TIMES, DIVIDE, ASSIGN, EQ, LT, LE, GT, GE,
               NE}
 
-    literals = {'(', ')', '{', '}', ';'}
+    literals = {'(', ')', '{', '}', '[', ']', ';',','}
+
+
+    @_(r'[/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]')
+    def ignore_linecomment(self, t):
+        self.lineno += t.value.count('\n')
 
     # String containing ignored characters
-    ignore = '\t'
+    ignore = ' \t'
 
     # Regular expression rules for tokens
     PLUS = r'\+'
@@ -37,8 +42,10 @@ class LexerAnalysis(Lexer):
     ID['while'] = WHILE
     ID['print'] = PRINT
     ID['return'] = RETURN
+    ID['void'] = VOID
+    ID['int'] = INT
+    ignore_comment = r'//.*'
 
-    ignore_comment = r'[/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]'
 
     # Line number tracking
     @_(r'\n+')
@@ -47,13 +54,37 @@ class LexerAnalysis(Lexer):
 
     def error(self, t):
         print('Line %d: Bad character %r' % (self.lineno, t.value[0]))
+        self.index += 1
 
 
 def main():
-    data = open("Input/allofsymbols.in")
+    # Input correct
+    # file = open("Inputs/allofsymbols.in", 'r')
+    # file = open("Inputs/sort.in", 'r')
+    # file = open("Inputs/mdc.in", 'r')
+    file = open("Inputs/listofemails.in", 'r')
+    data = str()
+    for line in file:
+        data += str(line)
+
     lexer = LexerAnalysis()
     for tok in lexer.tokenize(data):
-        print(tok)
+
+        if tok.type == 'IF' or tok.type == 'ELSE' or tok.type == 'WHILE':
+            print(tok.value)
+        elif tok.type == 'PRINT' or tok.type == 'RETURN' or tok.type == 'VOID':
+            print(tok.value)
+        elif tok.type == 'INT' or tok.type == 'EQ' or tok.type == 'NE':
+            print(tok.value)
+        elif tok.type == 'LE' or tok.type == 'LT' or tok.type == 'GE':
+            print(tok.value)
+        elif tok.type == 'GT' or tok.type == 'MINUS' or tok.type == 'PLUS':
+            print(tok.value)
+        elif tok.type == 'ASSIGN' or tok.type == 'DIVIDE' or tok.type == 'TIMES':
+            print(tok.value)
+        else:
+            print(tok.type)
+
 
 if __name__ == '__main__':
     main()
