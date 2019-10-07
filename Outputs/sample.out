@@ -1,0 +1,58 @@
+[
+  "Prog: ",
+  [
+    "Decl: ",
+    [
+      "Decl Fun: ",
+      [
+        "Tipo: ",
+        "int"
+      ],
+      "main",
+      "(",
+      [
+        "Parmetros: ",
+        "void"
+      ],
+      ")",
+      [
+        "Decl Composta: ",
+        "{",
+        [
+          "Decl Locais: ",
+          null
+        ],
+        [
+          "Ls Comandos: ",
+          null,
+          [
+            "Comando: ",
+            [
+              "Decl Expr: ",
+              [
+                "Expr: ",
+                [
+                  "Var: ",
+                  "x"
+                ],
+                "=",
+                [
+                  "Expr: ",
+                  [
+                    "Expr Sim: ",
+                    [
+                      "Som Expr: ",
+                      30
+                    ]
+                  ]
+                ]
+              ],
+              ";"
+            ]
+          ]
+        ],
+        "}"
+      ]
+    ]
+  ]
+]

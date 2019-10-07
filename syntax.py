@@ -1,121 +1,143 @@
+from pip._internal import operations
 from sly import Parser
 from lexer import LexerAnalysis
 from anytree import Node, RenderTree
-import re
-import json
+from anytree.importer import JsonImporter
 
+import json
+importer = JsonImporter()
 class Expr:
     pass
 
 
 class Program(Expr):
-    def __init__(self, program):
-        self.program = program
+    def __init__(self, ListDeclaration):
+        self.ListDeclaration = ListDeclaration
+# program = Node("Pro")
+# list_decraration = Node("Ls Decl", parent=program)
+# declaration = Node("Decl", parent=list_decraration)
+# decl_variable = Node("Decl Var", parent=declaration)
+# decl_function = Node("Decl Fun", parent=declaration)
+# tipo = Node("Tipo", parent=decl_variable)
+# parametro = Node("Params", parent=decl_function)
+# lista_parametros = Node("Ls Params", parent=parametro)
+# param = Node("Param", parent=lista_parametros)
+# decl_composta = Node("Decl Comp", parent=decl_function)
+# decl_locais = Node("Decl Loc", parent=decl_composta)
+# lista_comandos = Node("Ls Coma", parent=decl_composta)
+# comando = Node("Com", parent=lista_comandos)
+# decl_expressao = Node("Decl Expr", parent=comando)
+# decl_selecao = Node("Declaracao Selecao", parent=comando)
+# decl_iteracao = Node("Decl It", parent = comando)
+# decl_retorno = Node("Decl Ret", parent=comando)
+# expressao = Node("Expr", parent=decl_expressao)
+# variavel = Node("Var", parent=expressao)
+# expr_simples = Node("Expr Sim", parent=expressao)
+# op_relacional = Node("Op Re", parent=expr_simples)
+# soma_expressao = Node("Soma Expr", parent=expr_simples)
+# soma  = Node("Soma", parent=soma_expressao)
+# termo = Node("Termo", parent=soma_expressao)
+# mult = Node("Mult", parent=termo)
+# fator = Node("Fator", parent=termo)
+# ativacao = Node("Ati", parent=fator)
+# argumentos = Node("Arg.", parent=ativacao)
+# lista_argumentos = Node("Ls Arg", parent=argumentos)
 
-# class ListDeclaration(Expr):
-#     def __init__(self, decl_left, decl_right):
-#         self.decl_left = decl_left
-#         self.decl_right = decl_right
-#
-# class Declaration(Expr):
-#     def __init__(self, decl_variable):
-#         self.decl_varible = decl_variable
-#     def __init__(self, decl_function):
-#         self.decl_function = fu
+
+class ListDeclaration(Expr):
+    def __init__(self, decl_left, decl_right):
+        self.decl_left = decl_left
+        self.decl_right = decl_right
+
+
+class Declaration(Expr):
+    def __init__(self, decl):
+        self.decl = decl
+
 
 class ParserAnalysis(Parser):
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
+    operations = {
+        '+': lambda x, y: x + y,
+        '−': lambda x, y: x - y,
+        '∗': lambda x, y: x * y,
+        '/': lambda x, y: x / y,
+    }
+
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
-        return Program(p.lista_declaracao)
+        return ('Prog: ', p.lista_declaracao)
 
     @_(' ')
     def empty(self, p):
         pass
 
-    @_('declaracao aux0')
+    @_('lista_declaracao declaracao')
     def lista_declaracao(self, p):
-        return "Lista_Declaracao:: ", p.declaracao, p.aux0
-    @_('declaracao aux0')
-    def aux0(self, p):
-        return "Lista_Declaracao:: ", p.lista_declaracao, p.aux0
-    @_('empty')
-    def aux0(self, p):
-        pass
+        return "List Decl: ", p[0], p[1]
+    @_('declaracao')
+    def lista_declaracao(self, p):
+        return p[0]
 
     @_('declaracao_variaveis',
        'declaracao_funcoes')
     def declaracao(self, p):
-        return "Declaracao:: ", p[0]
+        return 'Decl: ', p[0]
 
-    @_('tipo ID ";" "[" NUMBER "]" ";"')
-    def declaracao_variaveis(self, p):
-        return "Declaracao_variaveis:: ", p[0], p[1], p[2], p[3], p[4], \
-               p[5], p[6]
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        return "Declaracao_variaveis:: ", p[0], p[1], p[2], p[3], p[4], p[5]
+        return  'Decl Var: ', p[0], p[1], p[2], p[3], p[4], p[5]
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
-        return "Declaracao_variaveis:: ", p[0], p[1], p[2]
+        return 'Decl Var: ', p[0], p[1], p[2]
 
 
     @_('INT', 'VOID')
     def tipo(self, p):
-        return "Tipo:: ", p[0]
+        return 'Tipo: ', p[0]
 
     @_('tipo ID "(" parametros ")" declaracao_composta')
     def declaracao_funcoes(self, p):
-        return "Declaracao_funcoes:: ", p[0], p[1], p[2], p[3], p[4], p[5]
+        return 'Decl Fun: ', p[0], p[1], p[2], p[3], p[4], p[5]
 
     @_('lista_parametros',
        'VOID')
     def parametros(self, p):
-        return "Parametros:: ", p[0]
-    @_('param aux1')
+        return 'Parmetros: ', p[0]
+    @_('lista_parametros "," param')
     def lista_parametros(self, p):
-        return "Lista_parametros:: ", p[0], p[1]
-    @_('"," param aux1')
-    def aux1(self, p):
-        return p[0], p[1]
-    @_('empty')
-    def aux1(self, p):
-        pass
+        return 'Ls Parametros: ', p[0], p[1], p[2]
+    @_('param')
+    def lista_parametros(self, p):
+        return p[0]
+
 
     @_('tipo ID "[" "]"')
     def param(self, p):
-        return "Param:: ", p[0], p[1], p[2]
+        return 'Param: ', p[0], p[1], p[2]
     @_('tipo ID')
     def param(self, p):
-        return "Param:: ", p[0], p[1]
+        return 'Param: ', p[0], p[1]
 
     @_('"{" declaracoes_locais lista_comandos "}"')
     def declaracao_composta(self, p):
-        return ("Declaracao_composta:: ", p[0], p[1], p[2], p[3])
+        return 'Decl Composta: ', p[0], p[1], p[2], p[3]
 
-    @_('aux2')
+    @_('declaracoes_locais declaracao_variaveis')
     def declaracoes_locais(self, p):
-        return "Declaracao_local:: ", p[0]
-
-    @_('declaracao_variaveis aux2')
-    def aux2(self, p):
-        return p[0], p[1]
+        return 'Decl Locais: ', p[0]
     @_('empty')
-    def aux2(self, p):
+    def declaracoes_locais(self, p):
         pass
 
-    @_('aux3')
+    @_('lista_comandos comando')
     def lista_comandos(self, p):
-        return "Lista_comandos:: ", p[0]
-    @_('comando aux3')
-    def aux3(self, p):
-        return p[0], p[1]
-
+        return 'Ls Comandos: ', p[0], p[1]
     @_('empty')
-    def aux3(self, p):
+    def lista_comandos(self, p):
         pass
 
     @_('declaracao_expressao',
@@ -124,107 +146,110 @@ class ParserAnalysis(Parser):
        'declaracao_iteracao',
        'declaracao_retorno')
     def comando(self, p):
-        return "Comando:: ", p[0]
+        return 'Comando: ',p[0]
 
     @_('expressao ";"')
     def declaracao_expressao(self, p):
-        return "Declaracao_expressao:: ", p[0], p[1]
+        return 'Decl Expr: ', p[0], p[1]
     @_('";"')
     def declaracao_expressao(self, p):
-        return "Declaracao_expressao:: ", p[0]
+        return 'Decl Expr: ', p[0]
 
     @_('IF "(" expressao ")" comando')
     def declaracao_selecao(self, p):
-        return "Declaracao_selecao:: ", p[0], p[1], p[2], p[3], p[4]
+        return 'Decl Sel: ', p[0], p[1], p[2], p[3], p[4]
 
     @_('IF "(" expressao ")" comando ELSE comando')
     def declaracao_selecao(self, p):
-        return "Declaracao_selecao:: ", p[0], p[1], p[2], p[3], p[4]
+        return 'Decl Sel: ', p[0], p[1], p[2], p[3], p[4]
 
     @_('WHILE "(" expressao ")" comando')
     def declaracao_iteracao(self, p):
-        return "Declaracao_iteracao:: ", p[0], p[1], p[2], p[3], p[4]
+        return 'Decl It: ', p[0], p[1], p[2], p[3], p[4]
 
-    @_('RETURN ";"')
-    def declaracao_retorno(self, p):
-        return "Declaracao_retorno:: ", p[0], p[1]
 
     @_('RETURN expressao ";"')
     def declaracao_retorno(self, p):
-        return "Declaracao_retorno:: ", p[0], p[1], p[2]
+        return 'Decl Ret: ', p[0], p[1], p[2]
+    @_('RETURN ";"')
+    def declaracao_retorno(self, p):
+        return 'Decl Ret: ', p[0], p[1]
+
 
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
-        return "Expressao:: ", p[0], p[1], p[2]
+        return 'Expr: ', p[0], p[1], p[2]
 
     @_('expressao_simples')
     def expressao(self, p):
-        return "Expressao:: ", p[0]
+        return 'Expr: ', p[0]
 
     @_('ID "[" expressao "]"')
     def variavel(self, p):
-        return "Variavel:: ", p[0], p[1], p[2], p[3]
+        return 'Var: ', p[0], p[1], p[2], p[3]
     @_('ID')
     def variavel(self, p):
-        return "Variavel:: ", p[0]
+        return 'Var: ', p[0]
 
     @_('soma_expressao op_relacional soma_expressao')
     def expressao_simples(self, p):
-        return "Expressao_simples:: ", p[0], p[1], p[2]
+        return 'Expr Sim: ', p[0], p[1], p[2]
 
     @_('soma_expressao')
     def expressao_simples(self, p):
-        return "Expressao_simples:: ", p[0]
+        return 'Expr Sim: ', p[0]
 
     @_('LE', 'LT', 'GE', 'GT', 'EQ', 'NE')
     def op_relacional(self, p):
-        return "Op_relacional:: ", p[0]
+        return 'Op Rel: ', p[0]
 
-    @_('termo aux4')
+    @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        return "Soma_expressao:: ", p[0], p[1]
-    @_('soma termo aux4')
-    def aux4(self, p):
-        return p[0], p[1], p[2]
-    @_('empty')
-    def aux4(self, p):
-        pass
+        if p[1] == '+':
+            p[0] = p[0] + p[2]
+        return 'Som Expr: ', p[0]
+    @_('termo')
+    def soma_expressao(self, p):
+        return p[0]
 
     @_('PLUS', 'MINUS')
     def soma(self, p):
-        return "Soma:: ",p[0]
+        return p[0]
 
-    @_('termo mult fator')
+    @_('fator aux6')
     def termo(self, p):
-        return "Termo:: ", p[0], p[1], p[2]
+        return p[0]
+    @_('mult fator aux6')
+    def aux6(self, p):
+        return p[0], p[1]
+    @_('empty')
+    def aux6(self, p):
+        pass
 
-    @_('fator')
-    def termo(self, p):
-        return "Termo:: ", p[0]
 
     @_('DIVIDE', 'TIMES')
     def mult(self, p):
-        return "Mult:: ", p[0]
+        return 'Mult: ', p[0]
 
     @_('"(" expressao ")"')
     def fator(self, p):
-        return "Fator:: ", p[0], p[1], p[2]
+        return p[0], p[1], p[2]
 
     @_('variavel', 'ativacao', 'NUMBER')
     def fator(self, p):
-        return "Fator:: ", p[0]
+        return p[0]
 
     @_('ID "(" argumentos ")"')
     def ativacao(self, p):
-        return "Ativacao:: ", p[0], p[1], p[2], p[3]
+        return 'Ativacao: ', p[0], p[1], p[2], p[3]
 
     @_('lista_argumentos', 'empty')
     def argumentos(self, p):
-        return "Argumentos:: ", p[0]
+        return 'Arg: ', p[0]
 
     @_('expressao aux5')
     def lista_argumentos(self, p):
-        return "Lista_argumentos:: ", p.expressao, p.aux5
+        return 'Ls Arg: ', p.expressao, p.aux5
     @_('"," expressao aux5')
     def aux5(self, p):
         return p[0], p[1]
@@ -233,11 +258,10 @@ class ParserAnalysis(Parser):
         pass
 
 
-
 def main():
     lexer = LexerAnalysis()
     parser = ParserAnalysis()
-    file = open('Inputs/sort.in', 'r')
+    file = open('Inputs/sample.in', 'r')
     while True:
         try:
             data = str()
@@ -248,11 +272,15 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-            json_str = json.dumps(result.program, sort_keys=True, indent=2)
-            print('Programa:: {}'.format(json_str))
-            with open()
+            #print(result)
+            json_str = json.dumps(result, sort_keys=True, indent=2)
+            f = open('Outputs/sample.out', 'w')
+            f.write(str(json_str))
+            f.close()
             break
 
 
 if __name__ == '__main__':
     main()
+    #for pre, fill, node in RenderTree(program):
+    #    print("%s%s" % (pre, node.name))
