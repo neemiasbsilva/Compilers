@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b6bf363-8cc3-44a4-977e-71af9fbda100" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Outputs/mdc.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inputs/sample.in" beforeDir="false" afterPath="$PROJECT_DIR$/Inputs/sample.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Outputs/sample.out" beforeDir="false" afterPath="$PROJECT_DIR$/Outputs/sample.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Outputs/sort.out" beforeDir="false" afterPath="$PROJECT_DIR$/Outputs/sort.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/syntax.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntax.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +25,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RiTRzGOYU9eRKxR2WQNOaybNEU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -82,7 +87,7 @@
       <updated>1570148912747</updated>
       <workItem from="1570148913923" duration="6603000" />
       <workItem from="1570277718181" duration="5000" />
-      <workItem from="1570289510502" duration="46638000" />
+      <workItem from="1570289510502" duration="47329000" />
     </task>
     <servers />
   </component>
@@ -101,5 +106,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

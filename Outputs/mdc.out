@@ -1,0 +1,236 @@
+[
+  "Prog: ",
+  [
+    "List Decl: ",
+    [
+      "Decl: ",
+      [
+        "Decl Fun: ",
+        [
+          "Tipo: ",
+          "int"
+        ],
+        "mdc",
+        "(",
+        [
+          "Parmetros: ",
+          [
+            "Ls Parametros: ",
+            [
+              "Param: ",
+              [
+                "Tipo: ",
+                "int"
+              ],
+              "u"
+            ],
+            ",",
+            [
+              "Param: ",
+              [
+                "Tipo: ",
+                "int"
+              ],
+              "v"
+            ]
+          ]
+        ],
+        ")",
+        [
+          "Decl Composta: ",
+          "{",
+          null,
+          [
+            "Ls Comandos: ",
+            null,
+            [
+              "Comando: ",
+              [
+                "Decl Sel: ",
+                "if",
+                "(",
+                [
+                  "Expr: ",
+                  [
+                    "Expr Sim: ",
+                    [
+                      "Var: ",
+                      "v"
+                    ],
+                    [
+                      "Op Rel: ",
+                      "=="
+                    ],
+                    0
+                  ]
+                ],
+                ")",
+                [
+                  "Comando: ",
+                  [
+                    "Decl Ret: ",
+                    "return",
+                    [
+                      "Expr: ",
+                      [
+                        "Expr Sim: ",
+                        [
+                          "Var: ",
+                          "u"
+                        ]
+                      ]
+                    ],
+                    ";"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "}"
+        ]
+      ]
+    ],
+    [
+      "Decl: ",
+      [
+        "Decl Fun: ",
+        [
+          "Tipo: ",
+          "void"
+        ],
+        "main",
+        "(",
+        [
+          "Parmetros: ",
+          "void"
+        ],
+        ")",
+        [
+          "Decl Composta: ",
+          "{",
+          [
+            "Decl Locais: ",
+            [
+              "Decl Locais: ",
+              [
+                "Decl Locais: ",
+                null
+              ]
+            ]
+          ],
+          [
+            "Ls Comandos: ",
+            [
+              "Ls Comandos: ",
+              [
+                "Ls Comandos: ",
+                null,
+                [
+                  "Comando: ",
+                  [
+                    "Decl Expr: ",
+                    [
+                      "Expr: ",
+                      [
+                        "Var: ",
+                        "x"
+                      ],
+                      "=",
+                      [
+                        "Expr: ",
+                        [
+                          "Expr Sim: ",
+                          5
+                        ]
+                      ]
+                    ],
+                    ";"
+                  ]
+                ]
+              ],
+              [
+                "Comando: ",
+                [
+                  "Decl Expr: ",
+                  [
+                    "Expr: ",
+                    [
+                      "Var: ",
+                      "y"
+                    ],
+                    "=",
+                    [
+                      "Expr: ",
+                      [
+                        "Expr Sim: ",
+                        10
+                      ]
+                    ]
+                  ],
+                  ";"
+                ]
+              ]
+            ],
+            [
+              "Comando: ",
+              [
+                "Decl Expr: ",
+                [
+                  "Expr: ",
+                  [
+                    "Var: ",
+                    "z"
+                  ],
+                  "=",
+                  [
+                    "Expr: ",
+                    [
+                      "Expr Sim: ",
+                      [
+                        "Ativacao: ",
+                        "mdc",
+                        "(",
+                        [
+                          "Arg: ",
+                          [
+                            "Ls Arg: ",
+                            [
+                              "Expr: ",
+                              [
+                                "Expr Sim: ",
+                                [
+                                  "Var: ",
+                                  "x"
+                                ]
+                              ]
+                            ],
+                            [
+                              ",",
+                              [
+                                "Expr: ",
+                                [
+                                  "Expr Sim: ",
+                                  [
+                                    "Var: ",
+                                    "y"
+                                  ]
+                                ]
+                              ]
+                            ]
+                          ]
+                        ],
+                        ")"
+                      ]
+                    ]
+                  ]
+                ],
+                ";"
+              ]
+            ]
+          ],
+          "}"
+        ]
+      ]
+    ]
+  ]
+]

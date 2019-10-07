@@ -205,9 +205,7 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        if p[1] == '+':
-            p[0] = p[0] + p[2]
-        return 'Som Expr: ', p[0]
+        return 'Som Expr: ', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]

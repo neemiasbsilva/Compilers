@@ -1,43 +1,34 @@
 [
   "Prog: ",
   [
-    "List Decl: ",
+    "Decl: ",
     [
-      "Decl: ",
+      "Decl Fun: ",
       [
-        "Decl Fun: ",
+        "Tipo: ",
+        "void"
+      ],
+      "main",
+      "(",
+      [
+        "Parmetros: ",
+        "void"
+      ],
+      ")",
+      [
+        "Decl Composta: ",
+        "{",
         [
-          "Tipo: ",
-          "void"
+          "Decl Locais: ",
+          null
         ],
-        "main",
-        "(",
         [
-          "Parmetros: ",
-          "void"
-        ],
-        ")",
-        [
-          "Decl Composta: ",
-          "{",
-          [
-            "Decl Locais: ",
-            [
-              [
-                "Decl Var: ",
-                [
-                  "Tipo: ",
-                  "int"
-                ],
-                "i",
-                ";"
-              ],
-              null
-            ]
-          ],
+          "Ls Comandos: ",
           [
             "Ls Comandos: ",
             [
+              "Ls Comandos: ",
+              null,
               [
                 "Comando: ",
                 [
@@ -53,288 +44,172 @@
                       "Expr: ",
                       [
                         "Expr Sim: ",
-                        [
-                          "Som Expr: ",
-                          [
-                            "Termo: ",
-                            [
-                              "Fator: ",
-                              0
-                            ]
-                          ],
-                          null
-                        ]
+                        0
                       ]
                     ]
                   ],
                   ";"
                 ]
-              ],
+              ]
+            ],
+            [
+              "Comando: ",
               [
+                "Decl It: ",
+                "while",
+                "(",
+                [
+                  "Expr: ",
+                  [
+                    "Expr Sim: ",
+                    [
+                      "Var: ",
+                      "i"
+                    ],
+                    [
+                      "Op Rel: ",
+                      "<"
+                    ],
+                    10
+                  ]
+                ],
+                ")",
                 [
                   "Comando: ",
                   [
-                    "Decl It: ",
-                    "while",
-                    "(",
+                    "Decl Composta: ",
+                    "{",
+                    null,
                     [
-                      "Expr: ",
+                      "Ls Comandos: ",
                       [
-                        "Expr Sim: ",
+                        "Ls Comandos: ",
+                        null,
                         [
-                          "Som Expr: ",
+                          "Comando: ",
                           [
-                            "Termo: ",
+                            "Decl Expr: ",
                             [
-                              "Fator: ",
+                              "Expr: ",
                               [
                                 "Var: ",
-                                "i"
-                              ]
-                            ]
-                          ],
-                          null
-                        ],
-                        [
-                          "Op Rel: ",
-                          "<"
-                        ],
-                        [
-                          "Som Expr: ",
-                          [
-                            "Termo: ",
-                            [
-                              "Fator: ",
-                              10
-                            ]
-                          ],
-                          null
-                        ]
-                      ]
-                    ],
-                    ")",
-                    [
-                      "Comando: ",
-                      [
-                        "Decl Composta: ",
-                        "{",
-                        [
-                          "Decl Locais: ",
-                          null
-                        ],
-                        [
-                          "Ls Comandos: ",
-                          [
-                            [
-                              "Comando: ",
-                              [
-                                "Decl Expr: ",
+                                "x",
+                                "[",
                                 [
                                   "Expr: ",
                                   [
-                                    "Var: ",
-                                    "x",
-                                    "[",
-                                    [
-                                      "Expr: ",
-                                      [
-                                        "Expr Sim: ",
-                                        [
-                                          "Som Expr: ",
-                                          [
-                                            "Termo: ",
-                                            [
-                                              "Fator: ",
-                                              [
-                                                "Var: ",
-                                                "i"
-                                              ]
-                                            ]
-                                          ],
-                                          null
-                                        ]
-                                      ]
-                                    ],
-                                    "]"
-                                  ],
-                                  "=",
-                                  [
-                                    "Expr: ",
-                                    [
-                                      "Expr Sim: ",
-                                      [
-                                        "Som Expr: ",
-                                        [
-                                          "Termo: ",
-                                          [
-                                            "Fator: ",
-                                            10
-                                          ]
-                                        ],
-                                        [
-                                          [
-                                            "Soma: ",
-                                            "-"
-                                          ],
-                                          [
-                                            "Termo: ",
-                                            [
-                                              "Fator: ",
-                                              1
-                                            ]
-                                          ],
-                                          null
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ],
-                                ";"
-                              ]
-                            ],
-                            [
-                              [
-                                "Comando: ",
-                                [
-                                  "Decl Expr: ",
-                                  [
-                                    "Expr: ",
+                                    "Expr Sim: ",
                                     [
                                       "Var: ",
                                       "i"
-                                    ],
-                                    "=",
-                                    [
-                                      "Expr: ",
-                                      [
-                                        "Expr Sim: ",
-                                        [
-                                          "Som Expr: ",
-                                          [
-                                            "Termo: ",
-                                            [
-                                              "Fator: ",
-                                              [
-                                                "Var: ",
-                                                "i"
-                                              ]
-                                            ]
-                                          ],
-                                          [
-                                            [
-                                              "Soma: ",
-                                              "+"
-                                            ],
-                                            [
-                                              "Termo: ",
-                                              [
-                                                "Fator: ",
-                                                1
-                                              ]
-                                            ],
-                                            null
-                                          ]
-                                        ]
-                                      ]
                                     ]
-                                  ],
-                                  ";"
-                                ]
+                                  ]
+                                ],
+                                "]"
                               ],
-                              null
-                            ]
-                          ]
-                        ],
-                        "}"
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  [
-                    "Comando: ",
-                    [
-                      "Decl Expr: ",
-                      [
-                        "Expr: ",
-                        [
-                          "Expr Sim: ",
-                          [
-                            "Som Expr: ",
-                            [
-                              "Termo: ",
+                              "=",
                               [
-                                "Fator: ",
+                                "Expr: ",
                                 [
-                                  "Ativacao: ",
-                                  "sort",
-                                  "(",
+                                  "Expr Sim: ",
                                   [
-                                    "Arg: ",
-                                    [
-                                      "Ls Arg: ",
-                                      [
-                                        "Expr: ",
-                                        [
-                                          "Expr Sim: ",
-                                          [
-                                            "Som Expr: ",
-                                            [
-                                              "Termo: ",
-                                              [
-                                                "Fator: ",
-                                                [
-                                                  "Var: ",
-                                                  "x"
-                                                ]
-                                              ]
-                                            ],
-                                            null
-                                          ]
-                                        ]
-                                      ],
-                                      [
-                                        ",",
-                                        [
-                                          "Expr: ",
-                                          [
-                                            "Expr Sim: ",
-                                            [
-                                              "Som Expr: ",
-                                              [
-                                                "Termo: ",
-                                                [
-                                                  "Fator: ",
-                                                  0
-                                                ]
-                                              ],
-                                              null
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ],
-                                  ")"
+                                    "Som Expr: ",
+                                    10,
+                                    "-",
+                                    1
+                                  ]
                                 ]
                               ]
                             ],
-                            null
+                            ";"
                           ]
                         ]
                       ],
-                      ";"
-                    ]
-                  ],
-                  null
+                      [
+                        "Comando: ",
+                        [
+                          "Decl Expr: ",
+                          [
+                            "Expr: ",
+                            [
+                              "Var: ",
+                              "i"
+                            ],
+                            "=",
+                            [
+                              "Expr: ",
+                              [
+                                "Expr Sim: ",
+                                [
+                                  "Som Expr: ",
+                                  [
+                                    "Var: ",
+                                    "i"
+                                  ],
+                                  "+",
+                                  1
+                                ]
+                              ]
+                            ]
+                          ],
+                          ";"
+                        ]
+                      ]
+                    ],
+                    "}"
+                  ]
                 ]
               ]
             ]
           ],
-          "}"
-        ]
+          [
+            "Comando: ",
+            [
+              "Decl Expr: ",
+              [
+                "Expr: ",
+                [
+                  "Expr Sim: ",
+                  [
+                    "Ativacao: ",
+                    "sort",
+                    "(",
+                    [
+                      "Arg: ",
+                      [
+                        "Ls Arg: ",
+                        [
+                          "Expr: ",
+                          [
+                            "Expr Sim: ",
+                            [
+                              "Var: ",
+                              "x"
+                            ]
+                          ]
+                        ],
+                        [
+                          ",",
+                          [
+                            "Expr: ",
+                            [
+                              "Expr Sim: ",
+                              0
+                            ]
+                          ]
+                        ]
+                      ]
+                    ],
+                    ")"
+                  ]
+                ]
+              ],
+              ";"
+            ]
+          ]
+        ],
+        "}"
       ]
-    ],
-    null
+    ]
   ]
 ]
