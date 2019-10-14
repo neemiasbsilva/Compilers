@@ -2,4 +2,5 @@
 int main(void){
     int x;
     x = 20+10;
+    return 0;
 }

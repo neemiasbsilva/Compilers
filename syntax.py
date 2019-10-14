@@ -89,7 +89,7 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        return  'Decl Var: ', p[0], p[1], p[2], p[3], p[4], p[5]
+        return 'Decl Var: ', p[0], p[1], p[2], p[3], p[4], p[5]
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
         return 'Decl Var: ', p[0], p[1], p[2]

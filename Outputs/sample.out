@@ -24,29 +24,47 @@
         ],
         [
           "Ls Comandos: ",
-          null,
           [
-            "Comando: ",
+            "Ls Comandos: ",
+            null,
             [
-              "Decl Expr: ",
+              "Comando: ",
               [
-                "Expr: ",
-                [
-                  "Var: ",
-                  "x"
-                ],
-                "=",
+                "Decl Expr: ",
                 [
                   "Expr: ",
                   [
-                    "Expr Sim: ",
+                    "Var: ",
+                    "x"
+                  ],
+                  "=",
+                  [
+                    "Expr: ",
                     [
-                      "Som Expr: ",
-                      20,
-                      "+",
-                      10
+                      "Expr Sim: ",
+                      [
+                        "Som Expr: ",
+                        20,
+                        "+",
+                        10
+                      ]
                     ]
                   ]
+                ],
+                ";"
+              ]
+            ]
+          ],
+          [
+            "Comando: ",
+            [
+              "Decl Ret: ",
+              "return",
+              [
+                "Expr: ",
+                [
+                  "Expr Sim: ",
+                  0
                 ]
               ],
               ";"
