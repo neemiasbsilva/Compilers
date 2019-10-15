@@ -69,7 +69,7 @@ class ParserAnalysis(Parser):
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
-        return ('Prog: ', p.lista_declaracao)
+        return ('Programa: ', p.lista_declaracao)
 
     @_(' ')
     def empty(self, p):
@@ -77,7 +77,7 @@ class ParserAnalysis(Parser):
 
     @_('lista_declaracao declaracao')
     def lista_declaracao(self, p):
-        return "List Decl: ", p[0], p[1]
+        return "Lista_Declaracao: ", p[0], p[1]
     @_('declaracao')
     def lista_declaracao(self, p):
         return p[0]
@@ -85,14 +85,14 @@ class ParserAnalysis(Parser):
     @_('declaracao_variaveis',
        'declaracao_funcoes')
     def declaracao(self, p):
-        return 'Decl: ', p[0]
+        return 'Declaracao: ', p[0]
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        return 'Decl Var: ', p[0], p[1], p[2], p[3], p[4], p[5]
+        return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
-        return 'Decl Var: ', p[0], p[1], p[2]
+        return 'Declaracao_Variaveis: ', p[0], p[1], p[2]
 
 
     @_('INT', 'VOID')
@@ -101,7 +101,7 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "(" parametros ")" declaracao_composta')
     def declaracao_funcoes(self, p):
-        return 'Decl Fun: ', p[0], p[1], p[2], p[3], p[4], p[5]
+        return 'Declaracao_Funcoes: ', p[0], p[1], p[2], p[3], p[4], p[5]
 
     @_('lista_parametros',
        'VOID')
@@ -109,7 +109,7 @@ class ParserAnalysis(Parser):
         return 'Parmetros: ', p[0]
     @_('lista_parametros "," param')
     def lista_parametros(self, p):
-        return 'Ls Parametros: ', p[0], p[1], p[2]
+        return 'Lista_Parametros: ', p[0], p[1], p[2]
     @_('param')
     def lista_parametros(self, p):
         return p[0]
@@ -124,18 +124,18 @@ class ParserAnalysis(Parser):
 
     @_('"{" declaracoes_locais lista_comandos "}"')
     def declaracao_composta(self, p):
-        return 'Decl Composta: ', p[0], p[1], p[2], p[3]
+        return 'Declaracao_Composta: ', p[0], p[1], p[2], p[3]
 
     @_('declaracoes_locais declaracao_variaveis')
     def declaracoes_locais(self, p):
-        return 'Decl Locais: ', p[0]
+        return 'Declaracao_Locais: ', p[0]
     @_('empty')
     def declaracoes_locais(self, p):
         pass
 
     @_('lista_comandos comando')
     def lista_comandos(self, p):
-        return 'Ls Comandos: ', p[0], p[1]
+        return 'Lista_Comandos: ', p[0], p[1]
     @_('empty')
     def lista_comandos(self, p):
         pass
@@ -150,62 +150,62 @@ class ParserAnalysis(Parser):
 
     @_('expressao ";"')
     def declaracao_expressao(self, p):
-        return 'Decl Expr: ', p[0], p[1]
+        return 'Declaracao_Expressao: ', p[0], p[1]
     @_('";"')
     def declaracao_expressao(self, p):
-        return 'Decl Expr: ', p[0]
+        return 'Declaracao_Expressao: ', p[0]
 
     @_('IF "(" expressao ")" comando')
     def declaracao_selecao(self, p):
-        return 'Decl Sel: ', p[0], p[1], p[2], p[3], p[4]
+        return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
 
     @_('IF "(" expressao ")" comando ELSE comando')
     def declaracao_selecao(self, p):
-        return 'Decl Sel: ', p[0], p[1], p[2], p[3], p[4]
+        return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
 
     @_('WHILE "(" expressao ")" comando')
     def declaracao_iteracao(self, p):
-        return 'Decl It: ', p[0], p[1], p[2], p[3], p[4]
+        return 'Declaracao_Iteracao: ', p[0], p[1], p[2], p[3], p[4]
 
 
     @_('RETURN expressao ";"')
     def declaracao_retorno(self, p):
-        return 'Decl Ret: ', p[0], p[1], p[2]
+        return 'Declaracao_Retorno: ', p[0], p[1], p[2]
     @_('RETURN ";"')
     def declaracao_retorno(self, p):
-        return 'Decl Ret: ', p[0], p[1]
+        return 'Declaracao_Retorno: ', p[0], p[1]
 
 
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
-        return 'Expr: ', p[0], p[1], p[2]
+        return 'Expressao: ', p[0], p[1], p[2]
 
     @_('expressao_simples')
     def expressao(self, p):
-        return 'Expr: ', p[0]
+        return 'Expressao: ', p[0]
 
     @_('ID "[" expressao "]"')
     def variavel(self, p):
-        return 'Var: ', p[0], p[1], p[2], p[3]
+        return 'Variavel: ', p[0], p[1], p[2], p[3]
     @_('ID')
     def variavel(self, p):
-        return 'Var: ', p[0]
+        return 'Variavel: ', p[0]
 
     @_('soma_expressao op_relacional soma_expressao')
     def expressao_simples(self, p):
-        return 'Expr Sim: ', p[0], p[1], p[2]
+        return 'Expressao_Simples: ', p[0], p[1], p[2]
 
     @_('soma_expressao')
     def expressao_simples(self, p):
-        return 'Expr Sim: ', p[0]
+        return 'Expr_Simples: ', p[0]
 
     @_('LE', 'LT', 'GE', 'GT', 'EQ', 'NE')
     def op_relacional(self, p):
-        return 'Op Rel: ', p[0]
+        return 'Op_Relacional: ', p[0]
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        return 'Som Expr: ', p[0], p[1], p[2]
+        return 'Soma_Expressao: ', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -243,11 +243,11 @@ class ParserAnalysis(Parser):
 
     @_('lista_argumentos', 'empty')
     def argumentos(self, p):
-        return 'Arg: ', p[0]
+        return 'Argumentos: ', p[0]
 
     @_('expressao aux5')
     def lista_argumentos(self, p):
-        return 'Ls Arg: ', p.expressao, p.aux5
+        return 'Lista_Argumentos: ', p.expressao, p.aux5
     @_('"," expressao aux5')
     def aux5(self, p):
         return p[0], p[1]

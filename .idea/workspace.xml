@@ -35,6 +35,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -85,7 +86,7 @@
       <workItem from="1570148913923" duration="6603000" />
       <workItem from="1570277718181" duration="5000" />
       <workItem from="1570289510502" duration="47851000" />
-      <workItem from="1571079564928" duration="2025000" />
+      <workItem from="1571079564928" duration="3802000" />
     </task>
     <servers />
   </component>
