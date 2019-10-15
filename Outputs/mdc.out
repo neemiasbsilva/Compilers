@@ -1,11 +1,11 @@
 [
-  "Prog: ",
+  "Programa: ",
   [
-    "List Decl: ",
+    "Lista_Declaracao: ",
     [
-      "Decl: ",
+      "Declaracao: ",
       [
-        "Decl Fun: ",
+        "Declaracao_Funcoes: ",
         [
           "Tipo: ",
           "int"
@@ -15,7 +15,7 @@
         [
           "Parmetros: ",
           [
-            "Ls Parametros: ",
+            "Lista_Parametros: ",
             [
               "Param: ",
               [
@@ -37,28 +37,28 @@
         ],
         ")",
         [
-          "Decl Composta: ",
+          "Declaracao_Composta: ",
           "{",
           null,
           [
-            "Ls Comandos: ",
+            "Lista_Comandos: ",
             null,
             [
               "Comando: ",
               [
-                "Decl Sel: ",
+                "Declaracao_Selecao: ",
                 "if",
                 "(",
                 [
-                  "Expr: ",
+                  "Expressao: ",
                   [
-                    "Expr Sim: ",
+                    "Expressao_Simples: ",
                     [
-                      "Var: ",
+                      "Variavel: ",
                       "v"
                     ],
                     [
-                      "Op Rel: ",
+                      "Op_Relacional: ",
                       "=="
                     ],
                     0
@@ -68,14 +68,14 @@
                 [
                   "Comando: ",
                   [
-                    "Decl Ret: ",
+                    "Declaracao_Retorno: ",
                     "return",
                     [
-                      "Expr: ",
+                      "Expressao: ",
                       [
-                        "Expr Sim: ",
+                        "Expr_Simples: ",
                         [
-                          "Var: ",
+                          "Variavel: ",
                           "u"
                         ]
                       ]
@@ -91,9 +91,9 @@
       ]
     ],
     [
-      "Decl: ",
+      "Declaracao: ",
       [
-        "Decl Fun: ",
+        "Declaracao_Funcoes: ",
         [
           "Tipo: ",
           "void"
@@ -106,40 +106,40 @@
         ],
         ")",
         [
-          "Decl Composta: ",
+          "Declaracao_Composta: ",
           "{",
           [
-            "Decl Locais: ",
+            "Declaracao_Locais: ",
             [
-              "Decl Locais: ",
+              "Declaracao_Locais: ",
               [
-                "Decl Locais: ",
+                "Declaracao_Locais: ",
                 null
               ]
             ]
           ],
           [
-            "Ls Comandos: ",
+            "Lista_Comandos: ",
             [
-              "Ls Comandos: ",
+              "Lista_Comandos: ",
               [
-                "Ls Comandos: ",
+                "Lista_Comandos: ",
                 null,
                 [
                   "Comando: ",
                   [
-                    "Decl Expr: ",
+                    "Declaracao_Expressao: ",
                     [
-                      "Expr: ",
+                      "Expressao: ",
                       [
-                        "Var: ",
+                        "Variavel: ",
                         "x"
                       ],
                       "=",
                       [
-                        "Expr: ",
+                        "Expressao: ",
                         [
-                          "Expr Sim: ",
+                          "Expr_Simples: ",
                           5
                         ]
                       ]
@@ -151,18 +151,18 @@
               [
                 "Comando: ",
                 [
-                  "Decl Expr: ",
+                  "Declaracao_Expressao: ",
                   [
-                    "Expr: ",
+                    "Expressao: ",
                     [
-                      "Var: ",
+                      "Variavel: ",
                       "y"
                     ],
                     "=",
                     [
-                      "Expr: ",
+                      "Expressao: ",
                       [
-                        "Expr Sim: ",
+                        "Expr_Simples: ",
                         10
                       ]
                     ]
@@ -174,32 +174,32 @@
             [
               "Comando: ",
               [
-                "Decl Expr: ",
+                "Declaracao_Expressao: ",
                 [
-                  "Expr: ",
+                  "Expressao: ",
                   [
-                    "Var: ",
+                    "Variavel: ",
                     "z"
                   ],
                   "=",
                   [
-                    "Expr: ",
+                    "Expressao: ",
                     [
-                      "Expr Sim: ",
+                      "Expr_Simples: ",
                       [
                         "Ativacao: ",
                         "mdc",
                         "(",
                         [
-                          "Arg: ",
+                          "Argumentos: ",
                           [
-                            "Ls Arg: ",
+                            "Lista_Argumentos: ",
                             [
-                              "Expr: ",
+                              "Expressao: ",
                               [
-                                "Expr Sim: ",
+                                "Expr_Simples: ",
                                 [
-                                  "Var: ",
+                                  "Variavel: ",
                                   "x"
                                 ]
                               ]
@@ -207,11 +207,11 @@
                             [
                               ",",
                               [
-                                "Expr: ",
+                                "Expressao: ",
                                 [
-                                  "Expr Sim: ",
+                                  "Expr_Simples: ",
                                   [
-                                    "Var: ",
+                                    "Variavel: ",
                                     "y"
                                   ]
                                 ]
