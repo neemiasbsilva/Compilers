@@ -1,9 +1,9 @@
 [
-  "Prog: ",
+  "Programa: ",
   [
-    "Decl: ",
+    "Declaracao: ",
     [
-      "Decl Fun: ",
+      "Declaracao_Funcoes: ",
       [
         "Tipo: ",
         "void"
@@ -16,34 +16,34 @@
       ],
       ")",
       [
-        "Decl Composta: ",
+        "Declaracao_Composta: ",
         "{",
         [
-          "Decl Locais: ",
+          "Declaracao_Locais: ",
           null
         ],
         [
-          "Ls Comandos: ",
+          "Lista_Comandos: ",
           [
-            "Ls Comandos: ",
+            "Lista_Comandos: ",
             [
-              "Ls Comandos: ",
+              "Lista_Comandos: ",
               null,
               [
                 "Comando: ",
                 [
-                  "Decl Expr: ",
+                  "Declaracao_Expressao: ",
                   [
-                    "Expr: ",
+                    "Expressao: ",
                     [
-                      "Var: ",
+                      "Variavel: ",
                       "i"
                     ],
                     "=",
                     [
-                      "Expr: ",
+                      "Expressao: ",
                       [
-                        "Expr Sim: ",
+                        "Expr_Simples: ",
                         0
                       ]
                     ]
@@ -55,19 +55,19 @@
             [
               "Comando: ",
               [
-                "Decl It: ",
+                "Declaracao_Iteracao: ",
                 "while",
                 "(",
                 [
-                  "Expr: ",
+                  "Expressao: ",
                   [
-                    "Expr Sim: ",
+                    "Expressao_Simples: ",
                     [
-                      "Var: ",
+                      "Variavel: ",
                       "i"
                     ],
                     [
-                      "Op Rel: ",
+                      "Op_Relacional: ",
                       "<"
                     ],
                     10
@@ -77,30 +77,30 @@
                 [
                   "Comando: ",
                   [
-                    "Decl Composta: ",
+                    "Declaracao_Composta: ",
                     "{",
                     null,
                     [
-                      "Ls Comandos: ",
+                      "Lista_Comandos: ",
                       [
-                        "Ls Comandos: ",
+                        "Lista_Comandos: ",
                         null,
                         [
                           "Comando: ",
                           [
-                            "Decl Expr: ",
+                            "Declaracao_Expressao: ",
                             [
-                              "Expr: ",
+                              "Expressao: ",
                               [
-                                "Var: ",
+                                "Variavel: ",
                                 "x",
                                 "[",
                                 [
-                                  "Expr: ",
+                                  "Expressao: ",
                                   [
-                                    "Expr Sim: ",
+                                    "Expr_Simples: ",
                                     [
-                                      "Var: ",
+                                      "Variavel: ",
                                       "i"
                                     ]
                                   ]
@@ -109,11 +109,11 @@
                               ],
                               "=",
                               [
-                                "Expr: ",
+                                "Expressao: ",
                                 [
-                                  "Expr Sim: ",
+                                  "Expr_Simples: ",
                                   [
-                                    "Som Expr: ",
+                                    "Soma_Expressao: ",
                                     10,
                                     "-",
                                     1
@@ -128,22 +128,22 @@
                       [
                         "Comando: ",
                         [
-                          "Decl Expr: ",
+                          "Declaracao_Expressao: ",
                           [
-                            "Expr: ",
+                            "Expressao: ",
                             [
-                              "Var: ",
+                              "Variavel: ",
                               "i"
                             ],
                             "=",
                             [
-                              "Expr: ",
+                              "Expressao: ",
                               [
-                                "Expr Sim: ",
+                                "Expr_Simples: ",
                                 [
-                                  "Som Expr: ",
+                                  "Soma_Expressao: ",
                                   [
-                                    "Var: ",
+                                    "Variavel: ",
                                     "i"
                                   ],
                                   "+",
@@ -165,25 +165,25 @@
           [
             "Comando: ",
             [
-              "Decl Expr: ",
+              "Declaracao_Expressao: ",
               [
-                "Expr: ",
+                "Expressao: ",
                 [
-                  "Expr Sim: ",
+                  "Expr_Simples: ",
                   [
                     "Ativacao: ",
                     "sort",
                     "(",
                     [
-                      "Arg: ",
+                      "Argumentos: ",
                       [
-                        "Ls Arg: ",
+                        "Lista_Argumentos: ",
                         [
-                          "Expr: ",
+                          "Expressao: ",
                           [
-                            "Expr Sim: ",
+                            "Expr_Simples: ",
                             [
-                              "Var: ",
+                              "Variavel: ",
                               "x"
                             ]
                           ]
@@ -191,9 +191,9 @@
                         [
                           ",",
                           [
-                            "Expr: ",
+                            "Expressao: ",
                             [
-                              "Expr Sim: ",
+                              "Expr_Simples: ",
                               0
                             ]
                           ]
