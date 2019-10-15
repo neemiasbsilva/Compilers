@@ -1,9 +1,9 @@
 [
-  "Prog: ",
+  "Programa: ",
   [
-    "Decl: ",
+    "Declaracao: ",
     [
-      "Decl Fun: ",
+      "Declaracao_Funcoes: ",
       [
         "Tipo: ",
         "int"
@@ -16,34 +16,34 @@
       ],
       ")",
       [
-        "Decl Composta: ",
+        "Declaracao_Composta: ",
         "{",
         [
-          "Decl Locais: ",
+          "Declaracao_Locais: ",
           null
         ],
         [
-          "Ls Comandos: ",
+          "Lista_Comandos: ",
           [
-            "Ls Comandos: ",
+            "Lista_Comandos: ",
             null,
             [
               "Comando: ",
               [
-                "Decl Expr: ",
+                "Declaracao_Expressao: ",
                 [
-                  "Expr: ",
+                  "Expressao: ",
                   [
-                    "Var: ",
+                    "Variavel: ",
                     "x"
                   ],
                   "=",
                   [
-                    "Expr: ",
+                    "Expressao: ",
                     [
-                      "Expr Sim: ",
+                      "Expr_Simples: ",
                       [
-                        "Som Expr: ",
+                        "Soma_Expressao: ",
                         20,
                         "+",
                         10
@@ -58,12 +58,12 @@
           [
             "Comando: ",
             [
-              "Decl Ret: ",
+              "Declaracao_Retorno: ",
               "return",
               [
-                "Expr: ",
+                "Expressao: ",
                 [
-                  "Expr Sim: ",
+                  "Expr_Simples: ",
                   0
                 ]
               ],
