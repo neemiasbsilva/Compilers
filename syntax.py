@@ -65,7 +65,10 @@ class ParserAnalysis(Parser):
         '∗': lambda x, y: x * y,
         '/': lambda x, y: x / y,
     }
-
+    precedence = (
+        ('left', PLUS, MINUS),
+        ('left', TIMES, DIVIDE),
+    )
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
