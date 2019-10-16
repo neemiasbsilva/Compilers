@@ -1,85 +1,92 @@
 [
   "Programa: ",
   [
-    "Declaracao: ",
+    "Lista_Declaracao: ",
     [
-      "Declaracao_Funcoes: ",
+      "Lista_Declaracao: ",
       [
-        "Tipo: ",
-        "void"
-      ],
-      "main",
-      "(",
-      [
-        "Parmetros: ",
-        "void"
-      ],
-      ")",
-      [
-        "Declaracao_Composta: ",
-        "{",
+        "Lista_Declaracao: ",
         [
-          "Declaracao_Locais: ",
-          null
+          "Declaracao: ",
+          [
+            "Declaracao_Variaveis: ",
+            [
+              "Tipo: ",
+              "int"
+            ],
+            "x",
+            "[",
+            10,
+            "]",
+            ";"
+          ]
         ],
         [
-          "Lista_Comandos: ",
+          "Declaracao: ",
           [
-            "Lista_Comandos: ",
+            "Declaracao_Funcoes: ",
             [
-              "Lista_Comandos: ",
-              null,
+              "Tipo: ",
+              "int"
+            ],
+            "minloc",
+            "(",
+            [
+              "Parmetros: ",
               [
-                "Comando: ",
+                "Lista_Parametros: ",
                 [
-                  "Declaracao_Expressao: ",
+                  "Lista_Parametros: ",
                   [
-                    "Expressao: ",
+                    "Param: ",
                     [
-                      "Variavel: ",
-                      "i"
+                      "Tipo: ",
+                      "int"
                     ],
-                    "=",
-                    [
-                      "Expressao: ",
-                      [
-                        "Expr_Simples: ",
-                        0
-                      ]
-                    ]
+                    "a",
+                    "["
                   ],
-                  ";"
+                  ",",
+                  [
+                    "Param: ",
+                    [
+                      "Tipo: ",
+                      "int"
+                    ],
+                    "low"
+                  ]
+                ],
+                ",",
+                [
+                  "Param: ",
+                  [
+                    "Tipo: ",
+                    "int"
+                  ],
+                  "high"
                 ]
               ]
             ],
+            ")",
             [
-              "Comando: ",
+              "Declaracao_Composta: ",
+              "{",
               [
-                "Declaracao_Iteracao: ",
-                "while",
-                "(",
+                "Declaracao_Locais: ",
                 [
-                  "Expressao: ",
+                  "Declaracao_Locais: ",
                   [
-                    "Expressao_Simples: ",
-                    [
-                      "Variavel: ",
-                      "i"
-                    ],
-                    [
-                      "Op_Relacional: ",
-                      "<"
-                    ],
-                    10
+                    "Declaracao_Locais: ",
+                    null
                   ]
-                ],
-                ")",
+                ]
+              ],
+              [
+                "Lista_Comandos: ",
                 [
-                  "Comando: ",
+                  "Lista_Comandos: ",
                   [
-                    "Declaracao_Composta: ",
-                    "{",
-                    null,
+                    "Lista_Comandos: ",
                     [
                       "Lista_Comandos: ",
                       [
@@ -93,19 +100,7 @@
                               "Expressao: ",
                               [
                                 "Variavel: ",
-                                "x",
-                                "[",
-                                [
-                                  "Expressao: ",
-                                  [
-                                    "Expr_Simples: ",
-                                    [
-                                      "Variavel: ",
-                                      "i"
-                                    ]
-                                  ]
-                                ],
-                                "]"
+                                "k"
                               ],
                               "=",
                               [
@@ -113,10 +108,8 @@
                                 [
                                   "Expr_Simples: ",
                                   [
-                                    "Soma_Expressao: ",
-                                    10,
-                                    "-",
-                                    1
+                                    "Variavel: ",
+                                    "low"
                                   ]
                                 ]
                               ]
@@ -133,7 +126,7 @@
                             "Expressao: ",
                             [
                               "Variavel: ",
-                              "i"
+                              "x"
                             ],
                             "=",
                             [
@@ -141,13 +134,20 @@
                               [
                                 "Expr_Simples: ",
                                 [
-                                  "Soma_Expressao: ",
+                                  "Variavel: ",
+                                  "a",
+                                  "[",
                                   [
-                                    "Variavel: ",
-                                    "i"
+                                    "Expressao: ",
+                                    [
+                                      "Expr_Simples: ",
+                                      [
+                                        "Variavel: ",
+                                        "low"
+                                      ]
+                                    ]
                                   ],
-                                  "+",
-                                  1
+                                  "]"
                                 ]
                               ]
                             ]
@@ -156,59 +156,822 @@
                         ]
                       ]
                     ],
-                    "}"
-                  ]
-                ]
-              ]
-            ]
-          ],
-          [
-            "Comando: ",
-            [
-              "Declaracao_Expressao: ",
-              [
-                "Expressao: ",
-                [
-                  "Expr_Simples: ",
-                  [
-                    "Ativacao: ",
-                    "sort",
-                    "(",
                     [
-                      "Argumentos: ",
+                      "Comando: ",
                       [
-                        "Lista_Argumentos: ",
+                        "Declaracao_Expressao: ",
                         [
                           "Expressao: ",
                           [
-                            "Expr_Simples: ",
-                            [
-                              "Variavel: ",
-                              "x"
-                            ]
-                          ]
-                        ],
-                        [
-                          ",",
+                            "Variavel: ",
+                            "i"
+                          ],
+                          "=",
                           [
                             "Expressao: ",
                             [
                               "Expr_Simples: ",
-                              0
+                              [
+                                "Soma_Expressao: ",
+                                [
+                                  "Variavel: ",
+                                  "low"
+                                ],
+                                "+",
+                                1
+                              ]
                             ]
+                          ]
+                        ],
+                        ";"
+                      ]
+                    ]
+                  ],
+                  [
+                    "Comando: ",
+                    [
+                      "Declaracao_Iteracao: ",
+                      "while",
+                      "(",
+                      [
+                        "Expressao: ",
+                        [
+                          "Expressao_Simples: ",
+                          [
+                            "Variavel: ",
+                            "i"
+                          ],
+                          [
+                            "Op_Relacional: ",
+                            "<"
+                          ],
+                          [
+                            "Variavel: ",
+                            "high"
+                          ]
+                        ]
+                      ],
+                      ")",
+                      [
+                        "Comando: ",
+                        [
+                          "Declaracao_Composta: ",
+                          "{",
+                          null,
+                          [
+                            "Lista_Comandos: ",
+                            [
+                              "Lista_Comandos: ",
+                              null,
+                              [
+                                "Comando: ",
+                                [
+                                  "Declaracao_Selecao: ",
+                                  "if",
+                                  "(",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Expressao_Simples: ",
+                                      [
+                                        "Variavel: ",
+                                        "a",
+                                        "[",
+                                        [
+                                          "Expressao: ",
+                                          [
+                                            "Expr_Simples: ",
+                                            [
+                                              "Variavel: ",
+                                              "i"
+                                            ]
+                                          ]
+                                        ],
+                                        "]"
+                                      ],
+                                      [
+                                        "Op_Relacional: ",
+                                        "<"
+                                      ],
+                                      [
+                                        "Variavel: ",
+                                        "x"
+                                      ]
+                                    ]
+                                  ],
+                                  ")",
+                                  [
+                                    "Comando: ",
+                                    [
+                                      "Declaracao_Composta: ",
+                                      "{",
+                                      null,
+                                      [
+                                        "Lista_Comandos: ",
+                                        [
+                                          "Lista_Comandos: ",
+                                          null,
+                                          [
+                                            "Comando: ",
+                                            [
+                                              "Declaracao_Expressao: ",
+                                              [
+                                                "Expressao: ",
+                                                [
+                                                  "Variavel: ",
+                                                  "x"
+                                                ],
+                                                "=",
+                                                [
+                                                  "Expressao: ",
+                                                  [
+                                                    "Expr_Simples: ",
+                                                    [
+                                                      "Variavel: ",
+                                                      "a",
+                                                      "[",
+                                                      [
+                                                        "Expressao: ",
+                                                        [
+                                                          "Expr_Simples: ",
+                                                          [
+                                                            "Variavel: ",
+                                                            "i"
+                                                          ]
+                                                        ]
+                                                      ],
+                                                      "]"
+                                                    ]
+                                                  ]
+                                                ]
+                                              ],
+                                              ";"
+                                            ]
+                                          ]
+                                        ],
+                                        [
+                                          "Comando: ",
+                                          [
+                                            "Declaracao_Expressao: ",
+                                            [
+                                              "Expressao: ",
+                                              [
+                                                "Variavel: ",
+                                                "k"
+                                              ],
+                                              "=",
+                                              [
+                                                "Expressao: ",
+                                                [
+                                                  "Expr_Simples: ",
+                                                  [
+                                                    "Variavel: ",
+                                                    "i"
+                                                  ]
+                                                ]
+                                              ]
+                                            ],
+                                            ";"
+                                          ]
+                                        ]
+                                      ],
+                                      "}"
+                                    ]
+                                  ]
+                                ]
+                              ]
+                            ],
+                            [
+                              "Comando: ",
+                              [
+                                "Declaracao_Expressao: ",
+                                [
+                                  "Expressao: ",
+                                  [
+                                    "Variavel: ",
+                                    "i"
+                                  ],
+                                  "=",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Expr_Simples: ",
+                                      [
+                                        "Soma_Expressao: ",
+                                        [
+                                          "Variavel: ",
+                                          "i"
+                                        ],
+                                        "+",
+                                        1
+                                      ]
+                                    ]
+                                  ]
+                                ],
+                                ";"
+                              ]
+                            ]
+                          ],
+                          "}"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "Comando: ",
+                  [
+                    "Declaracao_Retorno: ",
+                    "return",
+                    [
+                      "Expressao: ",
+                      [
+                        "Expr_Simples: ",
+                        [
+                          "Variavel: ",
+                          "k"
+                        ]
+                      ]
+                    ],
+                    ";"
+                  ]
+                ]
+              ],
+              "}"
+            ]
+          ]
+        ]
+      ],
+      [
+        "Declaracao: ",
+        [
+          "Declaracao_Funcoes: ",
+          [
+            "Tipo: ",
+            "void"
+          ],
+          "sort",
+          "(",
+          [
+            "Parmetros: ",
+            [
+              "Lista_Parametros: ",
+              [
+                "Lista_Parametros: ",
+                [
+                  "Param: ",
+                  [
+                    "Tipo: ",
+                    "int"
+                  ],
+                  "a",
+                  "["
+                ],
+                ",",
+                [
+                  "Param: ",
+                  [
+                    "Tipo: ",
+                    "int"
+                  ],
+                  "low"
+                ]
+              ],
+              ",",
+              [
+                "Param: ",
+                [
+                  "Tipo: ",
+                  "int"
+                ],
+                "high"
+              ]
+            ]
+          ],
+          ")",
+          [
+            "Declaracao_Composta: ",
+            "{",
+            [
+              "Declaracao_Locais: ",
+              [
+                "Declaracao_Locais: ",
+                null
+              ]
+            ],
+            [
+              "Lista_Comandos: ",
+              [
+                "Lista_Comandos: ",
+                null,
+                [
+                  "Comando: ",
+                  [
+                    "Declaracao_Expressao: ",
+                    [
+                      "Expressao: ",
+                      [
+                        "Variavel: ",
+                        "i"
+                      ],
+                      "=",
+                      [
+                        "Expressao: ",
+                        [
+                          "Expr_Simples: ",
+                          [
+                            "Variavel: ",
+                            "low"
                           ]
                         ]
                       ]
                     ],
-                    ")"
+                    ";"
                   ]
                 ]
               ],
-              ";"
-            ]
+              [
+                "Comando: ",
+                [
+                  "Declaracao_Iteracao: ",
+                  "while",
+                  "(",
+                  [
+                    "Expressao: ",
+                    [
+                      "Expressao_Simples: ",
+                      [
+                        "Variavel: ",
+                        "i"
+                      ],
+                      [
+                        "Op_Relacional: ",
+                        "<"
+                      ],
+                      [
+                        "Soma_Expressao: ",
+                        [
+                          "Variavel: ",
+                          "high"
+                        ],
+                        "-",
+                        1
+                      ]
+                    ]
+                  ],
+                  ")",
+                  [
+                    "Comando: ",
+                    [
+                      "Declaracao_Composta: ",
+                      "{",
+                      [
+                        "Declaracao_Locais: ",
+                        null
+                      ],
+                      [
+                        "Lista_Comandos: ",
+                        [
+                          "Lista_Comandos: ",
+                          [
+                            "Lista_Comandos: ",
+                            [
+                              "Lista_Comandos: ",
+                              [
+                                "Lista_Comandos: ",
+                                null,
+                                [
+                                  "Comando: ",
+                                  [
+                                    "Declaracao_Expressao: ",
+                                    [
+                                      "Expressao: ",
+                                      [
+                                        "Variavel: ",
+                                        "k"
+                                      ],
+                                      "=",
+                                      [
+                                        "Expressao: ",
+                                        [
+                                          "Expr_Simples: ",
+                                          [
+                                            "Ativacao: ",
+                                            "minloc",
+                                            "(",
+                                            [
+                                              "Argumentos: ",
+                                              [
+                                                "Lista_Argumentos: ",
+                                                [
+                                                  "Expressao: ",
+                                                  [
+                                                    "Expr_Simples: ",
+                                                    [
+                                                      "Variavel: ",
+                                                      "a"
+                                                    ]
+                                                  ]
+                                                ],
+                                                [
+                                                  ",",
+                                                  [
+                                                    "Expressao: ",
+                                                    [
+                                                      "Expr_Simples: ",
+                                                      null
+                                                    ]
+                                                  ]
+                                                ]
+                                              ]
+                                            ],
+                                            ")"
+                                          ]
+                                        ]
+                                      ]
+                                    ],
+                                    ";"
+                                  ]
+                                ]
+                              ],
+                              [
+                                "Comando: ",
+                                [
+                                  "Declaracao_Expressao: ",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Variavel: ",
+                                      "t"
+                                    ],
+                                    "=",
+                                    [
+                                      "Expressao: ",
+                                      [
+                                        "Expr_Simples: ",
+                                        [
+                                          "Variavel: ",
+                                          "a",
+                                          "[",
+                                          [
+                                            "Expressao: ",
+                                            [
+                                              "Expr_Simples: ",
+                                              [
+                                                "Variavel: ",
+                                                "k"
+                                              ]
+                                            ]
+                                          ],
+                                          "]"
+                                        ]
+                                      ]
+                                    ]
+                                  ],
+                                  ";"
+                                ]
+                              ]
+                            ],
+                            [
+                              "Comando: ",
+                              [
+                                "Declaracao_Expressao: ",
+                                [
+                                  "Expressao: ",
+                                  [
+                                    "Variavel: ",
+                                    "a",
+                                    "[",
+                                    [
+                                      "Expressao: ",
+                                      [
+                                        "Expr_Simples: ",
+                                        [
+                                          "Variavel: ",
+                                          "k"
+                                        ]
+                                      ]
+                                    ],
+                                    "]"
+                                  ],
+                                  "=",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Expr_Simples: ",
+                                      [
+                                        "Variavel: ",
+                                        "a",
+                                        "[",
+                                        [
+                                          "Expressao: ",
+                                          [
+                                            "Expr_Simples: ",
+                                            [
+                                              "Variavel: ",
+                                              "i"
+                                            ]
+                                          ]
+                                        ],
+                                        "]"
+                                      ]
+                                    ]
+                                  ]
+                                ],
+                                ";"
+                              ]
+                            ]
+                          ],
+                          [
+                            "Comando: ",
+                            [
+                              "Declaracao_Expressao: ",
+                              [
+                                "Expressao: ",
+                                [
+                                  "Variavel: ",
+                                  "a",
+                                  "[",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Expr_Simples: ",
+                                      [
+                                        "Variavel: ",
+                                        "i"
+                                      ]
+                                    ]
+                                  ],
+                                  "]"
+                                ],
+                                "=",
+                                [
+                                  "Expressao: ",
+                                  [
+                                    "Expr_Simples: ",
+                                    [
+                                      "Variavel: ",
+                                      "t"
+                                    ]
+                                  ]
+                                ]
+                              ],
+                              ";"
+                            ]
+                          ]
+                        ],
+                        [
+                          "Comando: ",
+                          [
+                            "Declaracao_Expressao: ",
+                            [
+                              "Expressao: ",
+                              [
+                                "Variavel: ",
+                                "i"
+                              ],
+                              "=",
+                              [
+                                "Expressao: ",
+                                [
+                                  "Expr_Simples: ",
+                                  [
+                                    "Soma_Expressao: ",
+                                    [
+                                      "Variavel: ",
+                                      "i"
+                                    ],
+                                    "+",
+                                    1
+                                  ]
+                                ]
+                              ]
+                            ],
+                            ";"
+                          ]
+                        ]
+                      ],
+                      "}"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            "}"
           ]
+        ]
+      ]
+    ],
+    [
+      "Declaracao: ",
+      [
+        "Declaracao_Funcoes: ",
+        [
+          "Tipo: ",
+          "void"
         ],
-        "}"
+        "main",
+        "(",
+        [
+          "Parmetros: ",
+          "void"
+        ],
+        ")",
+        [
+          "Declaracao_Composta: ",
+          "{",
+          [
+            "Declaracao_Locais: ",
+            null
+          ],
+          [
+            "Lista_Comandos: ",
+            [
+              "Lista_Comandos: ",
+              [
+                "Lista_Comandos: ",
+                null,
+                [
+                  "Comando: ",
+                  [
+                    "Declaracao_Expressao: ",
+                    [
+                      "Expressao: ",
+                      [
+                        "Variavel: ",
+                        "i"
+                      ],
+                      "=",
+                      [
+                        "Expressao: ",
+                        [
+                          "Expr_Simples: ",
+                          0
+                        ]
+                      ]
+                    ],
+                    ";"
+                  ]
+                ]
+              ],
+              [
+                "Comando: ",
+                [
+                  "Declaracao_Iteracao: ",
+                  "while",
+                  "(",
+                  [
+                    "Expressao: ",
+                    [
+                      "Expressao_Simples: ",
+                      [
+                        "Variavel: ",
+                        "i"
+                      ],
+                      [
+                        "Op_Relacional: ",
+                        "<"
+                      ],
+                      10
+                    ]
+                  ],
+                  ")",
+                  [
+                    "Comando: ",
+                    [
+                      "Declaracao_Composta: ",
+                      "{",
+                      null,
+                      [
+                        "Lista_Comandos: ",
+                        [
+                          "Lista_Comandos: ",
+                          null,
+                          [
+                            "Comando: ",
+                            [
+                              "Declaracao_Expressao: ",
+                              [
+                                "Expressao: ",
+                                [
+                                  "Variavel: ",
+                                  "x",
+                                  "[",
+                                  [
+                                    "Expressao: ",
+                                    [
+                                      "Expr_Simples: ",
+                                      [
+                                        "Variavel: ",
+                                        "i"
+                                      ]
+                                    ]
+                                  ],
+                                  "]"
+                                ],
+                                "=",
+                                [
+                                  "Expressao: ",
+                                  [
+                                    "Expr_Simples: ",
+                                    [
+                                      "Soma_Expressao: ",
+                                      10,
+                                      "-",
+                                      1
+                                    ]
+                                  ]
+                                ]
+                              ],
+                              ";"
+                            ]
+                          ]
+                        ],
+                        [
+                          "Comando: ",
+                          [
+                            "Declaracao_Expressao: ",
+                            [
+                              "Expressao: ",
+                              [
+                                "Variavel: ",
+                                "i"
+                              ],
+                              "=",
+                              [
+                                "Expressao: ",
+                                [
+                                  "Expr_Simples: ",
+                                  [
+                                    "Soma_Expressao: ",
+                                    [
+                                      "Variavel: ",
+                                      "i"
+                                    ],
+                                    "+",
+                                    1
+                                  ]
+                                ]
+                              ]
+                            ],
+                            ";"
+                          ]
+                        ]
+                      ],
+                      "}"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "Comando: ",
+              [
+                "Declaracao_Expressao: ",
+                [
+                  "Expressao: ",
+                  [
+                    "Expr_Simples: ",
+                    [
+                      "Ativacao: ",
+                      "sort",
+                      "(",
+                      [
+                        "Argumentos: ",
+                        [
+                          "Lista_Argumentos: ",
+                          [
+                            "Expressao: ",
+                            [
+                              "Expr_Simples: ",
+                              [
+                                "Variavel: ",
+                                "x"
+                              ]
+                            ]
+                          ],
+                          [
+                            ",",
+                            [
+                              "Expressao: ",
+                              [
+                                "Expr_Simples: ",
+                                0
+                              ]
+                            ]
+                          ]
+                        ]
+                      ],
+                      ")"
+                    ]
+                  ]
+                ],
+                ";"
+              ]
+            ]
+          ],
+          "}"
+        ]
       ]
     ]
   ]
