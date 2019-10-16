@@ -1,6 +1,8 @@
 int main(void){
-    int x z
+    int x x
     x = 20+10;
-    u = x
+    x = 20+z;
+    int u
+    z = u;
     return 0;
 }

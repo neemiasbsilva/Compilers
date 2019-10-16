@@ -3,7 +3,7 @@ from sly import Lexer
 
 class LexerAnalysis(Lexer):
     # Set of token names. This is always required
-    tokens = {NUMBER, ID, WHILE, IF, ELSE, PRINT, RETURN, VOID, INT, PLUS, MINUS, TIMES,
+    tokens = {NUMBER, ID, WHILE, IF, ELSE, RETURN, VOID, INT, PLUS, MINUS, TIMES,
               PLUS, MINUS, TIMES, DIVIDE, ASSIGN, EQ, LT, LE, GT, GE,
               NE}
 
@@ -40,7 +40,6 @@ class LexerAnalysis(Lexer):
     ID['if'] = IF
     ID['else'] = ELSE
     ID['while'] = WHILE
-    ID['print'] = PRINT
     ID['return'] = RETURN
     ID['void'] = VOID
     ID['int'] = INT

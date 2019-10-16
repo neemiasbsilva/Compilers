@@ -1,0 +1,1831 @@
+Grammar:
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_declaracao
+Rule 2     empty -> <empty>
+Rule 3     lista_declaracao -> declaracao
+Rule 4     lista_declaracao -> lista_declaracao declaracao
+Rule 5     declaracao -> declaracao_funcoes
+Rule 6     declaracao -> declaracao_variaveis
+Rule 7     declaracao_variaveis -> tipo ID ;
+Rule 8     declaracao_variaveis -> tipo ID [ NUMBER ] ;
+Rule 9     tipo -> VOID
+Rule 10    tipo -> INT
+Rule 11    declaracao_funcoes -> tipo ID ( parametros ) declaracao_composta
+Rule 12    parametros -> VOID
+Rule 13    parametros -> lista_parametros
+Rule 14    lista_parametros -> param
+Rule 15    lista_parametros -> lista_parametros , param
+Rule 16    param -> tipo ID
+Rule 17    param -> tipo ID [ ]
+Rule 18    declaracao_composta -> { declaracoes_locais lista_comandos }
+Rule 19    declaracoes_locais -> empty
+Rule 20    declaracoes_locais -> declaracoes_locais declaracao_variaveis
+Rule 21    lista_comandos -> empty
+Rule 22    lista_comandos -> lista_comandos comando
+Rule 23    comando -> declaracao_retorno
+Rule 24    comando -> declaracao_iteracao
+Rule 25    comando -> declaracao_selecao
+Rule 26    comando -> declaracao_composta
+Rule 27    comando -> declaracao_expressao
+Rule 28    declaracao_expressao -> ;
+Rule 29    declaracao_expressao -> expressao ;
+Rule 30    declaracao_selecao -> IF ( expressao ) comando ELSE comando
+Rule 31    declaracao_selecao -> IF ( expressao ) comando
+Rule 32    declaracao_iteracao -> WHILE ( expressao ) comando
+Rule 33    declaracao_retorno -> RETURN ;
+Rule 34    declaracao_retorno -> RETURN expressao ;
+Rule 35    expressao -> expressao_simples
+Rule 36    expressao -> variavel ASSIGN expressao
+Rule 37    variavel -> ID
+Rule 38    variavel -> ID [ expressao ]
+Rule 39    expressao_simples -> soma_expressao
+Rule 40    expressao_simples -> soma_expressao op_relacional soma_expressao
+Rule 41    op_relacional -> NE
+Rule 42    op_relacional -> EQ
+Rule 43    op_relacional -> GT
+Rule 44    op_relacional -> GE
+Rule 45    op_relacional -> LT
+Rule 46    op_relacional -> LE
+Rule 47    soma_expressao -> termo
+Rule 48    soma_expressao -> soma_expressao soma termo
+Rule 49    soma -> MINUS  [precedence=left, level=1]
+Rule 50    soma -> PLUS  [precedence=left, level=1]
+Rule 51    termo -> fator aux6
+Rule 52    aux6 -> empty
+Rule 53    aux6 -> mult fator aux6
+Rule 54    mult -> TIMES  [precedence=left, level=2]
+Rule 55    mult -> DIVIDE  [precedence=left, level=2]
+Rule 56    fator -> NUMBER
+Rule 57    fator -> ativacao
+Rule 58    fator -> variavel
+Rule 59    fator -> ( expressao )
+Rule 60    ativacao -> ID ( argumentos )
+Rule 61    argumentos -> empty
+Rule 62    argumentos -> lista_argumentos
+Rule 63    lista_argumentos -> expressao aux5
+Rule 64    aux5 -> empty
+Rule 65    aux5 -> , expressao aux5
+
+Terminals, with rules where they appear:
+
+(                    : 11 30 31 32 59 60
+)                    : 11 30 31 32 59 60
+,                    : 15 65
+;                    : 7 8 28 29 33 34
+ASSIGN               : 36
+DIVIDE               : 55
+ELSE                 : 30
+EQ                   : 42
+GE                   : 44
+GT                   : 43
+ID                   : 7 8 11 16 17 37 38 60
+IF                   : 30 31
+INT                  : 10
+LE                   : 46
+LT                   : 45
+MINUS                : 49
+NE                   : 41
+NUMBER               : 8 56
+PLUS                 : 50
+RETURN               : 33 34
+TIMES                : 54
+VOID                 : 9 12
+WHILE                : 32
+[                    : 8 17 38
+]                    : 8 17 38
+error                : 
+{                    : 18
+}                    : 18
+
+Nonterminals, with rules where they appear:
+
+argumentos           : 60
+ativacao             : 57
+aux5                 : 63 65
+aux6                 : 51 53
+comando              : 22 30 30 31 32
+declaracao           : 3 4
+declaracao_composta  : 11 26
+declaracao_expressao : 27
+declaracao_funcoes   : 5
+declaracao_iteracao  : 24
+declaracao_retorno   : 23
+declaracao_selecao   : 25
+declaracao_variaveis : 6 20
+declaracoes_locais   : 18 20
+empty                : 19 21 52 61 64
+expressao            : 29 30 31 32 34 36 38 59 63 65
+expressao_simples    : 35
+fator                : 51 53
+lista_argumentos     : 62
+lista_comandos       : 18 22
+lista_declaracao     : 1 4
+lista_parametros     : 13 15
+mult                 : 53
+op_relacional        : 40
+param                : 14 15
+parametros           : 11
+programa             : 0
+soma                 : 48
+soma_expressao       : 39 40 40 48
+termo                : 47 48
+tipo                 : 7 8 11 16 17
+variavel             : 36 58
+
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_declaracao
+    (3) lista_declaracao -> . declaracao
+    (4) lista_declaracao -> . lista_declaracao declaracao
+    (5) declaracao -> . declaracao_funcoes
+    (6) declaracao -> . declaracao_variaveis
+    (11) declaracao_funcoes -> . tipo ID ( parametros ) declaracao_composta
+    (7) declaracao_variaveis -> . tipo ID ;
+    (8) declaracao_variaveis -> . tipo ID [ NUMBER ] ;
+    (9) tipo -> . VOID
+    (10) tipo -> . INT
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+
+    programa                       shift and go to state 1
+    lista_declaracao               shift and go to state 2
+    declaracao                     shift and go to state 3
+    declaracao_funcoes             shift and go to state 4
+    declaracao_variaveis           shift and go to state 5
+    tipo                           shift and go to state 6
+
+state 1
+
+    (0) S' -> programa .
+
+
+state 2
+
+    (1) programa -> lista_declaracao .
+    (4) lista_declaracao -> lista_declaracao . declaracao
+    (5) declaracao -> . declaracao_funcoes
+    (6) declaracao -> . declaracao_variaveis
+    (11) declaracao_funcoes -> . tipo ID ( parametros ) declaracao_composta
+    (7) declaracao_variaveis -> . tipo ID ;
+    (8) declaracao_variaveis -> . tipo ID [ NUMBER ] ;
+    (9) tipo -> . VOID
+    (10) tipo -> . INT
+    $end            reduce using rule 1 (programa -> lista_declaracao .)
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+
+    declaracao                     shift and go to state 9
+    declaracao_funcoes             shift and go to state 4
+    declaracao_variaveis           shift and go to state 5
+    tipo                           shift and go to state 6
+
+state 3
+
+    (3) lista_declaracao -> declaracao .
+    VOID            reduce using rule 3 (lista_declaracao -> declaracao .)
+    INT             reduce using rule 3 (lista_declaracao -> declaracao .)
+    $end            reduce using rule 3 (lista_declaracao -> declaracao .)
+
+
+state 4
+
+    (5) declaracao -> declaracao_funcoes .
+    VOID            reduce using rule 5 (declaracao -> declaracao_funcoes .)
+    INT             reduce using rule 5 (declaracao -> declaracao_funcoes .)
+    $end            reduce using rule 5 (declaracao -> declaracao_funcoes .)
+
+
+state 5
+
+    (6) declaracao -> declaracao_variaveis .
+    VOID            reduce using rule 6 (declaracao -> declaracao_variaveis .)
+    INT             reduce using rule 6 (declaracao -> declaracao_variaveis .)
+    $end            reduce using rule 6 (declaracao -> declaracao_variaveis .)
+
+
+state 6
+
+    (11) declaracao_funcoes -> tipo . ID ( parametros ) declaracao_composta
+    (7) declaracao_variaveis -> tipo . ID ;
+    (8) declaracao_variaveis -> tipo . ID [ NUMBER ] ;
+    ID              shift and go to state 10
+
+
+state 7
+
+    (9) tipo -> VOID .
+    ID              reduce using rule 9 (tipo -> VOID .)
+
+
+state 8
+
+    (10) tipo -> INT .
+    ID              reduce using rule 10 (tipo -> INT .)
+
+
+state 9
+
+    (4) lista_declaracao -> lista_declaracao declaracao .
+    VOID            reduce using rule 4 (lista_declaracao -> lista_declaracao declaracao .)
+    INT             reduce using rule 4 (lista_declaracao -> lista_declaracao declaracao .)
+    $end            reduce using rule 4 (lista_declaracao -> lista_declaracao declaracao .)
+
+
+state 10
+
+    (11) declaracao_funcoes -> tipo ID . ( parametros ) declaracao_composta
+    (7) declaracao_variaveis -> tipo ID . ;
+    (8) declaracao_variaveis -> tipo ID . [ NUMBER ] ;
+    (               shift and go to state 11
+    ;               shift and go to state 12
+    [               shift and go to state 13
+
+
+state 11
+
+    (11) declaracao_funcoes -> tipo ID ( . parametros ) declaracao_composta
+    (12) parametros -> . VOID
+    (13) parametros -> . lista_parametros
+    (14) lista_parametros -> . param
+    (15) lista_parametros -> . lista_parametros , param
+    (16) param -> . tipo ID
+    (17) param -> . tipo ID [ ]
+    (9) tipo -> . VOID
+    (10) tipo -> . INT
+    VOID            shift and go to state 16
+    INT             shift and go to state 8
+
+    tipo                           shift and go to state 14
+    parametros                     shift and go to state 15
+    lista_parametros               shift and go to state 17
+    param                          shift and go to state 18
+
+state 12
+
+    (7) declaracao_variaveis -> tipo ID ; .
+    VOID            reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    INT             reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    $end            reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    }               reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    RETURN          reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    WHILE           reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    IF              reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    {               reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    ;               reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    ID              reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    NUMBER          reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+    (               reduce using rule 7 (declaracao_variaveis -> tipo ID ; .)
+
+
+state 13
+
+    (8) declaracao_variaveis -> tipo ID [ . NUMBER ] ;
+    NUMBER          shift and go to state 19
+
+
+state 14
+
+    (16) param -> tipo . ID
+    (17) param -> tipo . ID [ ]
+    ID              shift and go to state 20
+
+
+state 15
+
+    (11) declaracao_funcoes -> tipo ID ( parametros . ) declaracao_composta
+    )               shift and go to state 21
+
+
+state 16
+
+    (12) parametros -> VOID .
+    (9) tipo -> VOID .
+    )               reduce using rule 12 (parametros -> VOID .)
+    ID              reduce using rule 9 (tipo -> VOID .)
+
+
+state 17
+
+    (13) parametros -> lista_parametros .
+    (15) lista_parametros -> lista_parametros . , param
+    )               reduce using rule 13 (parametros -> lista_parametros .)
+    ,               shift and go to state 22
+
+
+state 18
+
+    (14) lista_parametros -> param .
+    ,               reduce using rule 14 (lista_parametros -> param .)
+    )               reduce using rule 14 (lista_parametros -> param .)
+
+
+state 19
+
+    (8) declaracao_variaveis -> tipo ID [ NUMBER . ] ;
+    ]               shift and go to state 23
+
+
+state 20
+
+    (16) param -> tipo ID .
+    (17) param -> tipo ID . [ ]
+    ,               reduce using rule 16 (param -> tipo ID .)
+    )               reduce using rule 16 (param -> tipo ID .)
+    [               shift and go to state 24
+
+
+state 21
+
+    (11) declaracao_funcoes -> tipo ID ( parametros ) . declaracao_composta
+    (18) declaracao_composta -> . { declaracoes_locais lista_comandos }
+    {               shift and go to state 26
+
+    declaracao_composta            shift and go to state 25
+
+state 22
+
+    (15) lista_parametros -> lista_parametros , . param
+    (16) param -> . tipo ID
+    (17) param -> . tipo ID [ ]
+    (9) tipo -> . VOID
+    (10) tipo -> . INT
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+
+    param                          shift and go to state 27
+    tipo                           shift and go to state 14
+
+state 23
+
+    (8) declaracao_variaveis -> tipo ID [ NUMBER ] . ;
+    ;               shift and go to state 28
+
+
+state 24
+
+    (17) param -> tipo ID [ . ]
+    ]               shift and go to state 29
+
+
+state 25
+
+    (11) declaracao_funcoes -> tipo ID ( parametros ) declaracao_composta .
+    VOID            reduce using rule 11 (declaracao_funcoes -> tipo ID ( parametros ) declaracao_composta .)
+    INT             reduce using rule 11 (declaracao_funcoes -> tipo ID ( parametros ) declaracao_composta .)
+    $end            reduce using rule 11 (declaracao_funcoes -> tipo ID ( parametros ) declaracao_composta .)
+
+
+state 26
+
+    (18) declaracao_composta -> { . declaracoes_locais lista_comandos }
+    (19) declaracoes_locais -> . empty
+    (20) declaracoes_locais -> . declaracoes_locais declaracao_variaveis
+    (2) empty -> .
+    VOID            reduce using rule 2 (empty -> .)
+    INT             reduce using rule 2 (empty -> .)
+    }               reduce using rule 2 (empty -> .)
+    RETURN          reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    IF              reduce using rule 2 (empty -> .)
+    {               reduce using rule 2 (empty -> .)
+    ;               reduce using rule 2 (empty -> .)
+    ID              reduce using rule 2 (empty -> .)
+    NUMBER          reduce using rule 2 (empty -> .)
+    (               reduce using rule 2 (empty -> .)
+
+    declaracoes_locais             shift and go to state 30
+    empty                          shift and go to state 31
+
+state 27
+
+    (15) lista_parametros -> lista_parametros , param .
+    ,               reduce using rule 15 (lista_parametros -> lista_parametros , param .)
+    )               reduce using rule 15 (lista_parametros -> lista_parametros , param .)
+
+
+state 28
+
+    (8) declaracao_variaveis -> tipo ID [ NUMBER ] ; .
+    VOID            reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    INT             reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    $end            reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    }               reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    RETURN          reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    WHILE           reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    IF              reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    {               reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    ;               reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    ID              reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    NUMBER          reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+    (               reduce using rule 8 (declaracao_variaveis -> tipo ID [ NUMBER ] ; .)
+
+
+state 29
+
+    (17) param -> tipo ID [ ] .
+    ,               reduce using rule 17 (param -> tipo ID [ ] .)
+    )               reduce using rule 17 (param -> tipo ID [ ] .)
+
+
+state 30
+
+    (18) declaracao_composta -> { declaracoes_locais . lista_comandos }
+    (20) declaracoes_locais -> declaracoes_locais . declaracao_variaveis
+    (21) lista_comandos -> . empty
+    (22) lista_comandos -> . lista_comandos comando
+    (7) declaracao_variaveis -> . tipo ID ;
+    (8) declaracao_variaveis -> . tipo ID [ NUMBER ] ;
+    (2) empty -> .
+    (9) tipo -> . VOID
+    (10) tipo -> . INT
+    }               reduce using rule 2 (empty -> .)
+    RETURN          reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    IF              reduce using rule 2 (empty -> .)
+    {               reduce using rule 2 (empty -> .)
+    ;               reduce using rule 2 (empty -> .)
+    ID              reduce using rule 2 (empty -> .)
+    NUMBER          reduce using rule 2 (empty -> .)
+    (               reduce using rule 2 (empty -> .)
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+
+    lista_comandos                 shift and go to state 32
+    declaracao_variaveis           shift and go to state 33
+    empty                          shift and go to state 34
+    tipo                           shift and go to state 35
+
+state 31
+
+    (19) declaracoes_locais -> empty .
+    VOID            reduce using rule 19 (declaracoes_locais -> empty .)
+    INT             reduce using rule 19 (declaracoes_locais -> empty .)
+    }               reduce using rule 19 (declaracoes_locais -> empty .)
+    RETURN          reduce using rule 19 (declaracoes_locais -> empty .)
+    WHILE           reduce using rule 19 (declaracoes_locais -> empty .)
+    IF              reduce using rule 19 (declaracoes_locais -> empty .)
+    {               reduce using rule 19 (declaracoes_locais -> empty .)
+    ;               reduce using rule 19 (declaracoes_locais -> empty .)
+    ID              reduce using rule 19 (declaracoes_locais -> empty .)
+    NUMBER          reduce using rule 19 (declaracoes_locais -> empty .)
+    (               reduce using rule 19 (declaracoes_locais -> empty .)
+
+
+state 32
+
+    (18) declaracao_composta -> { declaracoes_locais lista_comandos . }
+    (22) lista_comandos -> lista_comandos . comando
+    (23) comando -> . declaracao_retorno
+    (24) comando -> . declaracao_iteracao
+    (25) comando -> . declaracao_selecao
+    (26) comando -> . declaracao_composta
+    (27) comando -> . declaracao_expressao
+    (33) declaracao_retorno -> . RETURN ;
+    (34) declaracao_retorno -> . RETURN expressao ;
+    (32) declaracao_iteracao -> . WHILE ( expressao ) comando
+    (30) declaracao_selecao -> . IF ( expressao ) comando ELSE comando
+    (31) declaracao_selecao -> . IF ( expressao ) comando
+    (18) declaracao_composta -> . { declaracoes_locais lista_comandos }
+    (28) declaracao_expressao -> . ;
+    (29) declaracao_expressao -> . expressao ;
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    }               shift and go to state 36
+    RETURN          shift and go to state 43
+    WHILE           shift and go to state 46
+    IF              shift and go to state 48
+    {               shift and go to state 26
+    ;               shift and go to state 44
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    comando                        shift and go to state 37
+    declaracao_retorno             shift and go to state 38
+    declaracao_iteracao            shift and go to state 39
+    declaracao_selecao             shift and go to state 40
+    declaracao_composta            shift and go to state 41
+    declaracao_expressao           shift and go to state 42
+    expressao                      shift and go to state 45
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 33
+
+    (20) declaracoes_locais -> declaracoes_locais declaracao_variaveis .
+    VOID            reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    INT             reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    }               reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    RETURN          reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    WHILE           reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    IF              reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    {               reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    ;               reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    ID              reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    NUMBER          reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+    (               reduce using rule 20 (declaracoes_locais -> declaracoes_locais declaracao_variaveis .)
+
+
+state 34
+
+    (21) lista_comandos -> empty .
+    }               reduce using rule 21 (lista_comandos -> empty .)
+    RETURN          reduce using rule 21 (lista_comandos -> empty .)
+    WHILE           reduce using rule 21 (lista_comandos -> empty .)
+    IF              reduce using rule 21 (lista_comandos -> empty .)
+    {               reduce using rule 21 (lista_comandos -> empty .)
+    ;               reduce using rule 21 (lista_comandos -> empty .)
+    ID              reduce using rule 21 (lista_comandos -> empty .)
+    NUMBER          reduce using rule 21 (lista_comandos -> empty .)
+    (               reduce using rule 21 (lista_comandos -> empty .)
+
+
+state 35
+
+    (7) declaracao_variaveis -> tipo . ID ;
+    (8) declaracao_variaveis -> tipo . ID [ NUMBER ] ;
+    ID              shift and go to state 57
+
+
+state 36
+
+    (18) declaracao_composta -> { declaracoes_locais lista_comandos } .
+    VOID            reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    INT             reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    $end            reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    }               reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    RETURN          reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    WHILE           reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    IF              reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    {               reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    ;               reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    ID              reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    NUMBER          reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    (               reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+    ELSE            reduce using rule 18 (declaracao_composta -> { declaracoes_locais lista_comandos } .)
+
+
+state 37
+
+    (22) lista_comandos -> lista_comandos comando .
+    }               reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    RETURN          reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    WHILE           reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    IF              reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    {               reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    ;               reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    ID              reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    NUMBER          reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+    (               reduce using rule 22 (lista_comandos -> lista_comandos comando .)
+
+
+state 38
+
+    (23) comando -> declaracao_retorno .
+    }               reduce using rule 23 (comando -> declaracao_retorno .)
+    RETURN          reduce using rule 23 (comando -> declaracao_retorno .)
+    WHILE           reduce using rule 23 (comando -> declaracao_retorno .)
+    IF              reduce using rule 23 (comando -> declaracao_retorno .)
+    {               reduce using rule 23 (comando -> declaracao_retorno .)
+    ;               reduce using rule 23 (comando -> declaracao_retorno .)
+    ID              reduce using rule 23 (comando -> declaracao_retorno .)
+    NUMBER          reduce using rule 23 (comando -> declaracao_retorno .)
+    (               reduce using rule 23 (comando -> declaracao_retorno .)
+    ELSE            reduce using rule 23 (comando -> declaracao_retorno .)
+
+
+state 39
+
+    (24) comando -> declaracao_iteracao .
+    }               reduce using rule 24 (comando -> declaracao_iteracao .)
+    RETURN          reduce using rule 24 (comando -> declaracao_iteracao .)
+    WHILE           reduce using rule 24 (comando -> declaracao_iteracao .)
+    IF              reduce using rule 24 (comando -> declaracao_iteracao .)
+    {               reduce using rule 24 (comando -> declaracao_iteracao .)
+    ;               reduce using rule 24 (comando -> declaracao_iteracao .)
+    ID              reduce using rule 24 (comando -> declaracao_iteracao .)
+    NUMBER          reduce using rule 24 (comando -> declaracao_iteracao .)
+    (               reduce using rule 24 (comando -> declaracao_iteracao .)
+    ELSE            reduce using rule 24 (comando -> declaracao_iteracao .)
+
+
+state 40
+
+    (25) comando -> declaracao_selecao .
+    }               reduce using rule 25 (comando -> declaracao_selecao .)
+    RETURN          reduce using rule 25 (comando -> declaracao_selecao .)
+    WHILE           reduce using rule 25 (comando -> declaracao_selecao .)
+    IF              reduce using rule 25 (comando -> declaracao_selecao .)
+    {               reduce using rule 25 (comando -> declaracao_selecao .)
+    ;               reduce using rule 25 (comando -> declaracao_selecao .)
+    ID              reduce using rule 25 (comando -> declaracao_selecao .)
+    NUMBER          reduce using rule 25 (comando -> declaracao_selecao .)
+    (               reduce using rule 25 (comando -> declaracao_selecao .)
+    ELSE            reduce using rule 25 (comando -> declaracao_selecao .)
+
+
+state 41
+
+    (26) comando -> declaracao_composta .
+    }               reduce using rule 26 (comando -> declaracao_composta .)
+    RETURN          reduce using rule 26 (comando -> declaracao_composta .)
+    WHILE           reduce using rule 26 (comando -> declaracao_composta .)
+    IF              reduce using rule 26 (comando -> declaracao_composta .)
+    {               reduce using rule 26 (comando -> declaracao_composta .)
+    ;               reduce using rule 26 (comando -> declaracao_composta .)
+    ID              reduce using rule 26 (comando -> declaracao_composta .)
+    NUMBER          reduce using rule 26 (comando -> declaracao_composta .)
+    (               reduce using rule 26 (comando -> declaracao_composta .)
+    ELSE            reduce using rule 26 (comando -> declaracao_composta .)
+
+
+state 42
+
+    (27) comando -> declaracao_expressao .
+    }               reduce using rule 27 (comando -> declaracao_expressao .)
+    RETURN          reduce using rule 27 (comando -> declaracao_expressao .)
+    WHILE           reduce using rule 27 (comando -> declaracao_expressao .)
+    IF              reduce using rule 27 (comando -> declaracao_expressao .)
+    {               reduce using rule 27 (comando -> declaracao_expressao .)
+    ;               reduce using rule 27 (comando -> declaracao_expressao .)
+    ID              reduce using rule 27 (comando -> declaracao_expressao .)
+    NUMBER          reduce using rule 27 (comando -> declaracao_expressao .)
+    (               reduce using rule 27 (comando -> declaracao_expressao .)
+    ELSE            reduce using rule 27 (comando -> declaracao_expressao .)
+
+
+state 43
+
+    (33) declaracao_retorno -> RETURN . ;
+    (34) declaracao_retorno -> RETURN . expressao ;
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ;               shift and go to state 58
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 59
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 44
+
+    (28) declaracao_expressao -> ; .
+    }               reduce using rule 28 (declaracao_expressao -> ; .)
+    RETURN          reduce using rule 28 (declaracao_expressao -> ; .)
+    WHILE           reduce using rule 28 (declaracao_expressao -> ; .)
+    IF              reduce using rule 28 (declaracao_expressao -> ; .)
+    {               reduce using rule 28 (declaracao_expressao -> ; .)
+    ;               reduce using rule 28 (declaracao_expressao -> ; .)
+    ID              reduce using rule 28 (declaracao_expressao -> ; .)
+    NUMBER          reduce using rule 28 (declaracao_expressao -> ; .)
+    (               reduce using rule 28 (declaracao_expressao -> ; .)
+    ELSE            reduce using rule 28 (declaracao_expressao -> ; .)
+
+
+state 45
+
+    (29) declaracao_expressao -> expressao . ;
+    ;               shift and go to state 60
+
+
+state 46
+
+    (32) declaracao_iteracao -> WHILE . ( expressao ) comando
+    (               shift and go to state 61
+
+
+state 47
+
+    (59) fator -> ( . expressao )
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 62
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 48
+
+    (30) declaracao_selecao -> IF . ( expressao ) comando ELSE comando
+    (31) declaracao_selecao -> IF . ( expressao ) comando
+    (               shift and go to state 63
+
+
+state 49
+
+    (35) expressao -> expressao_simples .
+    ;               reduce using rule 35 (expressao -> expressao_simples .)
+    )               reduce using rule 35 (expressao -> expressao_simples .)
+    ]               reduce using rule 35 (expressao -> expressao_simples .)
+    ,               reduce using rule 35 (expressao -> expressao_simples .)
+
+
+state 50
+
+    (36) expressao -> variavel . ASSIGN expressao
+    (58) fator -> variavel .
+    ASSIGN          shift and go to state 64
+    TIMES           reduce using rule 58 (fator -> variavel .)
+    DIVIDE          reduce using rule 58 (fator -> variavel .)
+    NE              reduce using rule 58 (fator -> variavel .)
+    EQ              reduce using rule 58 (fator -> variavel .)
+    GT              reduce using rule 58 (fator -> variavel .)
+    GE              reduce using rule 58 (fator -> variavel .)
+    LT              reduce using rule 58 (fator -> variavel .)
+    LE              reduce using rule 58 (fator -> variavel .)
+    MINUS           reduce using rule 58 (fator -> variavel .)
+    PLUS            reduce using rule 58 (fator -> variavel .)
+    ;               reduce using rule 58 (fator -> variavel .)
+    )               reduce using rule 58 (fator -> variavel .)
+    ]               reduce using rule 58 (fator -> variavel .)
+    ,               reduce using rule 58 (fator -> variavel .)
+
+
+state 51
+
+    (39) expressao_simples -> soma_expressao .
+    (40) expressao_simples -> soma_expressao . op_relacional soma_expressao
+    (48) soma_expressao -> soma_expressao . soma termo
+    (41) op_relacional -> . NE
+    (42) op_relacional -> . EQ
+    (43) op_relacional -> . GT
+    (44) op_relacional -> . GE
+    (45) op_relacional -> . LT
+    (46) op_relacional -> . LE
+    (49) soma -> . MINUS
+    (50) soma -> . PLUS
+    ;               reduce using rule 39 (expressao_simples -> soma_expressao .)
+    )               reduce using rule 39 (expressao_simples -> soma_expressao .)
+    ]               reduce using rule 39 (expressao_simples -> soma_expressao .)
+    ,               reduce using rule 39 (expressao_simples -> soma_expressao .)
+    NE              shift and go to state 67
+    EQ              shift and go to state 68
+    GT              shift and go to state 69
+    GE              shift and go to state 70
+    LT              shift and go to state 71
+    LE              shift and go to state 72
+    MINUS           shift and go to state 73
+    PLUS            shift and go to state 74
+
+    op_relacional                  shift and go to state 65
+    soma                           shift and go to state 66
+
+state 52
+
+    (37) variavel -> ID .
+    (38) variavel -> ID . [ expressao ]
+    (60) ativacao -> ID . ( argumentos )
+    ASSIGN          reduce using rule 37 (variavel -> ID .)
+    TIMES           reduce using rule 37 (variavel -> ID .)
+    DIVIDE          reduce using rule 37 (variavel -> ID .)
+    NE              reduce using rule 37 (variavel -> ID .)
+    EQ              reduce using rule 37 (variavel -> ID .)
+    GT              reduce using rule 37 (variavel -> ID .)
+    GE              reduce using rule 37 (variavel -> ID .)
+    LT              reduce using rule 37 (variavel -> ID .)
+    LE              reduce using rule 37 (variavel -> ID .)
+    MINUS           reduce using rule 37 (variavel -> ID .)
+    PLUS            reduce using rule 37 (variavel -> ID .)
+    ;               reduce using rule 37 (variavel -> ID .)
+    )               reduce using rule 37 (variavel -> ID .)
+    ]               reduce using rule 37 (variavel -> ID .)
+    ,               reduce using rule 37 (variavel -> ID .)
+    [               shift and go to state 75
+    (               shift and go to state 76
+
+
+state 53
+
+    (47) soma_expressao -> termo .
+    NE              reduce using rule 47 (soma_expressao -> termo .)
+    EQ              reduce using rule 47 (soma_expressao -> termo .)
+    GT              reduce using rule 47 (soma_expressao -> termo .)
+    GE              reduce using rule 47 (soma_expressao -> termo .)
+    LT              reduce using rule 47 (soma_expressao -> termo .)
+    LE              reduce using rule 47 (soma_expressao -> termo .)
+    MINUS           reduce using rule 47 (soma_expressao -> termo .)
+    PLUS            reduce using rule 47 (soma_expressao -> termo .)
+    ;               reduce using rule 47 (soma_expressao -> termo .)
+    )               reduce using rule 47 (soma_expressao -> termo .)
+    ]               reduce using rule 47 (soma_expressao -> termo .)
+    ,               reduce using rule 47 (soma_expressao -> termo .)
+
+
+state 54
+
+    (51) termo -> fator . aux6
+    (52) aux6 -> . empty
+    (53) aux6 -> . mult fator aux6
+    (2) empty -> .
+    (54) mult -> . TIMES
+    (55) mult -> . DIVIDE
+    NE              reduce using rule 2 (empty -> .)
+    EQ              reduce using rule 2 (empty -> .)
+    GT              reduce using rule 2 (empty -> .)
+    GE              reduce using rule 2 (empty -> .)
+    LT              reduce using rule 2 (empty -> .)
+    LE              reduce using rule 2 (empty -> .)
+    MINUS           reduce using rule 2 (empty -> .)
+    PLUS            reduce using rule 2 (empty -> .)
+    ;               reduce using rule 2 (empty -> .)
+    )               reduce using rule 2 (empty -> .)
+    ]               reduce using rule 2 (empty -> .)
+    ,               reduce using rule 2 (empty -> .)
+    TIMES           shift and go to state 80
+    DIVIDE          shift and go to state 81
+
+    aux6                           shift and go to state 77
+    empty                          shift and go to state 78
+    mult                           shift and go to state 79
+
+state 55
+
+    (56) fator -> NUMBER .
+    TIMES           reduce using rule 56 (fator -> NUMBER .)
+    DIVIDE          reduce using rule 56 (fator -> NUMBER .)
+    NE              reduce using rule 56 (fator -> NUMBER .)
+    EQ              reduce using rule 56 (fator -> NUMBER .)
+    GT              reduce using rule 56 (fator -> NUMBER .)
+    GE              reduce using rule 56 (fator -> NUMBER .)
+    LT              reduce using rule 56 (fator -> NUMBER .)
+    LE              reduce using rule 56 (fator -> NUMBER .)
+    MINUS           reduce using rule 56 (fator -> NUMBER .)
+    PLUS            reduce using rule 56 (fator -> NUMBER .)
+    ;               reduce using rule 56 (fator -> NUMBER .)
+    )               reduce using rule 56 (fator -> NUMBER .)
+    ]               reduce using rule 56 (fator -> NUMBER .)
+    ,               reduce using rule 56 (fator -> NUMBER .)
+
+
+state 56
+
+    (57) fator -> ativacao .
+    TIMES           reduce using rule 57 (fator -> ativacao .)
+    DIVIDE          reduce using rule 57 (fator -> ativacao .)
+    NE              reduce using rule 57 (fator -> ativacao .)
+    EQ              reduce using rule 57 (fator -> ativacao .)
+    GT              reduce using rule 57 (fator -> ativacao .)
+    GE              reduce using rule 57 (fator -> ativacao .)
+    LT              reduce using rule 57 (fator -> ativacao .)
+    LE              reduce using rule 57 (fator -> ativacao .)
+    MINUS           reduce using rule 57 (fator -> ativacao .)
+    PLUS            reduce using rule 57 (fator -> ativacao .)
+    ;               reduce using rule 57 (fator -> ativacao .)
+    )               reduce using rule 57 (fator -> ativacao .)
+    ]               reduce using rule 57 (fator -> ativacao .)
+    ,               reduce using rule 57 (fator -> ativacao .)
+
+
+state 57
+
+    (7) declaracao_variaveis -> tipo ID . ;
+    (8) declaracao_variaveis -> tipo ID . [ NUMBER ] ;
+    ;               shift and go to state 12
+    [               shift and go to state 13
+
+
+state 58
+
+    (33) declaracao_retorno -> RETURN ; .
+    }               reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    RETURN          reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    WHILE           reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    IF              reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    {               reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    ;               reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    ID              reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    NUMBER          reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    (               reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+    ELSE            reduce using rule 33 (declaracao_retorno -> RETURN ; .)
+
+
+state 59
+
+    (34) declaracao_retorno -> RETURN expressao . ;
+    ;               shift and go to state 82
+
+
+state 60
+
+    (29) declaracao_expressao -> expressao ; .
+    }               reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    RETURN          reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    WHILE           reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    IF              reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    {               reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    ;               reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    ID              reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    NUMBER          reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    (               reduce using rule 29 (declaracao_expressao -> expressao ; .)
+    ELSE            reduce using rule 29 (declaracao_expressao -> expressao ; .)
+
+
+state 61
+
+    (32) declaracao_iteracao -> WHILE ( . expressao ) comando
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 83
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 62
+
+    (59) fator -> ( expressao . )
+    )               shift and go to state 84
+
+
+state 63
+
+    (30) declaracao_selecao -> IF ( . expressao ) comando ELSE comando
+    (31) declaracao_selecao -> IF ( . expressao ) comando
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 85
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 64
+
+    (36) expressao -> variavel ASSIGN . expressao
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    variavel                       shift and go to state 50
+    expressao                      shift and go to state 86
+    expressao_simples              shift and go to state 49
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 65
+
+    (40) expressao_simples -> soma_expressao op_relacional . soma_expressao
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+    ID              shift and go to state 89
+
+    soma_expressao                 shift and go to state 87
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+    variavel                       shift and go to state 88
+
+state 66
+
+    (48) soma_expressao -> soma_expressao soma . termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+    ID              shift and go to state 89
+
+    termo                          shift and go to state 90
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+    variavel                       shift and go to state 88
+
+state 67
+
+    (41) op_relacional -> NE .
+    NUMBER          reduce using rule 41 (op_relacional -> NE .)
+    (               reduce using rule 41 (op_relacional -> NE .)
+    ID              reduce using rule 41 (op_relacional -> NE .)
+
+
+state 68
+
+    (42) op_relacional -> EQ .
+    NUMBER          reduce using rule 42 (op_relacional -> EQ .)
+    (               reduce using rule 42 (op_relacional -> EQ .)
+    ID              reduce using rule 42 (op_relacional -> EQ .)
+
+
+state 69
+
+    (43) op_relacional -> GT .
+    NUMBER          reduce using rule 43 (op_relacional -> GT .)
+    (               reduce using rule 43 (op_relacional -> GT .)
+    ID              reduce using rule 43 (op_relacional -> GT .)
+
+
+state 70
+
+    (44) op_relacional -> GE .
+    NUMBER          reduce using rule 44 (op_relacional -> GE .)
+    (               reduce using rule 44 (op_relacional -> GE .)
+    ID              reduce using rule 44 (op_relacional -> GE .)
+
+
+state 71
+
+    (45) op_relacional -> LT .
+    NUMBER          reduce using rule 45 (op_relacional -> LT .)
+    (               reduce using rule 45 (op_relacional -> LT .)
+    ID              reduce using rule 45 (op_relacional -> LT .)
+
+
+state 72
+
+    (46) op_relacional -> LE .
+    NUMBER          reduce using rule 46 (op_relacional -> LE .)
+    (               reduce using rule 46 (op_relacional -> LE .)
+    ID              reduce using rule 46 (op_relacional -> LE .)
+
+
+state 73
+
+    (49) soma -> MINUS .
+    NUMBER          reduce using rule 49 (soma -> MINUS .)
+    (               reduce using rule 49 (soma -> MINUS .)
+    ID              reduce using rule 49 (soma -> MINUS .)
+
+
+state 74
+
+    (50) soma -> PLUS .
+    NUMBER          reduce using rule 50 (soma -> PLUS .)
+    (               reduce using rule 50 (soma -> PLUS .)
+    ID              reduce using rule 50 (soma -> PLUS .)
+
+
+state 75
+
+    (38) variavel -> ID [ . expressao ]
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 91
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 76
+
+    (60) ativacao -> ID ( . argumentos )
+    (61) argumentos -> . empty
+    (62) argumentos -> . lista_argumentos
+    (2) empty -> .
+    (63) lista_argumentos -> . expressao aux5
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    )               reduce using rule 2 (empty -> .)
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    argumentos                     shift and go to state 92
+    empty                          shift and go to state 93
+    lista_argumentos               shift and go to state 94
+    expressao                      shift and go to state 95
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 77
+
+    (51) termo -> fator aux6 .
+    NE              reduce using rule 51 (termo -> fator aux6 .)
+    EQ              reduce using rule 51 (termo -> fator aux6 .)
+    GT              reduce using rule 51 (termo -> fator aux6 .)
+    GE              reduce using rule 51 (termo -> fator aux6 .)
+    LT              reduce using rule 51 (termo -> fator aux6 .)
+    LE              reduce using rule 51 (termo -> fator aux6 .)
+    MINUS           reduce using rule 51 (termo -> fator aux6 .)
+    PLUS            reduce using rule 51 (termo -> fator aux6 .)
+    ;               reduce using rule 51 (termo -> fator aux6 .)
+    )               reduce using rule 51 (termo -> fator aux6 .)
+    ]               reduce using rule 51 (termo -> fator aux6 .)
+    ,               reduce using rule 51 (termo -> fator aux6 .)
+
+
+state 78
+
+    (52) aux6 -> empty .
+    NE              reduce using rule 52 (aux6 -> empty .)
+    EQ              reduce using rule 52 (aux6 -> empty .)
+    GT              reduce using rule 52 (aux6 -> empty .)
+    GE              reduce using rule 52 (aux6 -> empty .)
+    LT              reduce using rule 52 (aux6 -> empty .)
+    LE              reduce using rule 52 (aux6 -> empty .)
+    MINUS           reduce using rule 52 (aux6 -> empty .)
+    PLUS            reduce using rule 52 (aux6 -> empty .)
+    ;               reduce using rule 52 (aux6 -> empty .)
+    )               reduce using rule 52 (aux6 -> empty .)
+    ]               reduce using rule 52 (aux6 -> empty .)
+    ,               reduce using rule 52 (aux6 -> empty .)
+
+
+state 79
+
+    (53) aux6 -> mult . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+    ID              shift and go to state 89
+
+    fator                          shift and go to state 96
+    ativacao                       shift and go to state 56
+    variavel                       shift and go to state 88
+
+state 80
+
+    (54) mult -> TIMES .
+    NUMBER          reduce using rule 54 (mult -> TIMES .)
+    (               reduce using rule 54 (mult -> TIMES .)
+    ID              reduce using rule 54 (mult -> TIMES .)
+
+
+state 81
+
+    (55) mult -> DIVIDE .
+    NUMBER          reduce using rule 55 (mult -> DIVIDE .)
+    (               reduce using rule 55 (mult -> DIVIDE .)
+    ID              reduce using rule 55 (mult -> DIVIDE .)
+
+
+state 82
+
+    (34) declaracao_retorno -> RETURN expressao ; .
+    }               reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    RETURN          reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    WHILE           reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    IF              reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    {               reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    ;               reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    ID              reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    NUMBER          reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    (               reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+    ELSE            reduce using rule 34 (declaracao_retorno -> RETURN expressao ; .)
+
+
+state 83
+
+    (32) declaracao_iteracao -> WHILE ( expressao . ) comando
+    )               shift and go to state 97
+
+
+state 84
+
+    (59) fator -> ( expressao ) .
+    TIMES           reduce using rule 59 (fator -> ( expressao ) .)
+    DIVIDE          reduce using rule 59 (fator -> ( expressao ) .)
+    NE              reduce using rule 59 (fator -> ( expressao ) .)
+    EQ              reduce using rule 59 (fator -> ( expressao ) .)
+    GT              reduce using rule 59 (fator -> ( expressao ) .)
+    GE              reduce using rule 59 (fator -> ( expressao ) .)
+    LT              reduce using rule 59 (fator -> ( expressao ) .)
+    LE              reduce using rule 59 (fator -> ( expressao ) .)
+    MINUS           reduce using rule 59 (fator -> ( expressao ) .)
+    PLUS            reduce using rule 59 (fator -> ( expressao ) .)
+    ;               reduce using rule 59 (fator -> ( expressao ) .)
+    )               reduce using rule 59 (fator -> ( expressao ) .)
+    ]               reduce using rule 59 (fator -> ( expressao ) .)
+    ,               reduce using rule 59 (fator -> ( expressao ) .)
+
+
+state 85
+
+    (30) declaracao_selecao -> IF ( expressao . ) comando ELSE comando
+    (31) declaracao_selecao -> IF ( expressao . ) comando
+    )               shift and go to state 98
+
+
+state 86
+
+    (36) expressao -> variavel ASSIGN expressao .
+    ;               reduce using rule 36 (expressao -> variavel ASSIGN expressao .)
+    )               reduce using rule 36 (expressao -> variavel ASSIGN expressao .)
+    ]               reduce using rule 36 (expressao -> variavel ASSIGN expressao .)
+    ,               reduce using rule 36 (expressao -> variavel ASSIGN expressao .)
+
+
+state 87
+
+    (40) expressao_simples -> soma_expressao op_relacional soma_expressao .
+    (48) soma_expressao -> soma_expressao . soma termo
+    (49) soma -> . MINUS
+    (50) soma -> . PLUS
+    ;               reduce using rule 40 (expressao_simples -> soma_expressao op_relacional soma_expressao .)
+    )               reduce using rule 40 (expressao_simples -> soma_expressao op_relacional soma_expressao .)
+    ]               reduce using rule 40 (expressao_simples -> soma_expressao op_relacional soma_expressao .)
+    ,               reduce using rule 40 (expressao_simples -> soma_expressao op_relacional soma_expressao .)
+    MINUS           shift and go to state 73
+    PLUS            shift and go to state 74
+
+    soma                           shift and go to state 66
+
+state 88
+
+    (58) fator -> variavel .
+    TIMES           reduce using rule 58 (fator -> variavel .)
+    DIVIDE          reduce using rule 58 (fator -> variavel .)
+    MINUS           reduce using rule 58 (fator -> variavel .)
+    PLUS            reduce using rule 58 (fator -> variavel .)
+    ;               reduce using rule 58 (fator -> variavel .)
+    )               reduce using rule 58 (fator -> variavel .)
+    ]               reduce using rule 58 (fator -> variavel .)
+    ,               reduce using rule 58 (fator -> variavel .)
+    NE              reduce using rule 58 (fator -> variavel .)
+    EQ              reduce using rule 58 (fator -> variavel .)
+    GT              reduce using rule 58 (fator -> variavel .)
+    GE              reduce using rule 58 (fator -> variavel .)
+    LT              reduce using rule 58 (fator -> variavel .)
+    LE              reduce using rule 58 (fator -> variavel .)
+
+
+state 89
+
+    (60) ativacao -> ID . ( argumentos )
+    (37) variavel -> ID .
+    (38) variavel -> ID . [ expressao ]
+    (               shift and go to state 76
+    TIMES           reduce using rule 37 (variavel -> ID .)
+    DIVIDE          reduce using rule 37 (variavel -> ID .)
+    MINUS           reduce using rule 37 (variavel -> ID .)
+    PLUS            reduce using rule 37 (variavel -> ID .)
+    ;               reduce using rule 37 (variavel -> ID .)
+    )               reduce using rule 37 (variavel -> ID .)
+    ]               reduce using rule 37 (variavel -> ID .)
+    ,               reduce using rule 37 (variavel -> ID .)
+    NE              reduce using rule 37 (variavel -> ID .)
+    EQ              reduce using rule 37 (variavel -> ID .)
+    GT              reduce using rule 37 (variavel -> ID .)
+    GE              reduce using rule 37 (variavel -> ID .)
+    LT              reduce using rule 37 (variavel -> ID .)
+    LE              reduce using rule 37 (variavel -> ID .)
+    [               shift and go to state 75
+
+
+state 90
+
+    (48) soma_expressao -> soma_expressao soma termo .
+    NE              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    EQ              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    GT              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    GE              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    LT              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    LE              reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    MINUS           reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    PLUS            reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    ;               reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    )               reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    ]               reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+    ,               reduce using rule 48 (soma_expressao -> soma_expressao soma termo .)
+
+
+state 91
+
+    (38) variavel -> ID [ expressao . ]
+    ]               shift and go to state 99
+
+
+state 92
+
+    (60) ativacao -> ID ( argumentos . )
+    )               shift and go to state 100
+
+
+state 93
+
+    (61) argumentos -> empty .
+    )               reduce using rule 61 (argumentos -> empty .)
+
+
+state 94
+
+    (62) argumentos -> lista_argumentos .
+    )               reduce using rule 62 (argumentos -> lista_argumentos .)
+
+
+state 95
+
+    (63) lista_argumentos -> expressao . aux5
+    (64) aux5 -> . empty
+    (65) aux5 -> . , expressao aux5
+    (2) empty -> .
+    ,               shift and go to state 103
+    )               reduce using rule 2 (empty -> .)
+
+    aux5                           shift and go to state 101
+    empty                          shift and go to state 102
+
+state 96
+
+    (53) aux6 -> mult fator . aux6
+    (52) aux6 -> . empty
+    (53) aux6 -> . mult fator aux6
+    (2) empty -> .
+    (54) mult -> . TIMES
+    (55) mult -> . DIVIDE
+    NE              reduce using rule 2 (empty -> .)
+    EQ              reduce using rule 2 (empty -> .)
+    GT              reduce using rule 2 (empty -> .)
+    GE              reduce using rule 2 (empty -> .)
+    LT              reduce using rule 2 (empty -> .)
+    LE              reduce using rule 2 (empty -> .)
+    MINUS           reduce using rule 2 (empty -> .)
+    PLUS            reduce using rule 2 (empty -> .)
+    ;               reduce using rule 2 (empty -> .)
+    )               reduce using rule 2 (empty -> .)
+    ]               reduce using rule 2 (empty -> .)
+    ,               reduce using rule 2 (empty -> .)
+    TIMES           shift and go to state 80
+    DIVIDE          shift and go to state 81
+
+    mult                           shift and go to state 79
+    aux6                           shift and go to state 104
+    empty                          shift and go to state 78
+
+state 97
+
+    (32) declaracao_iteracao -> WHILE ( expressao ) . comando
+    (23) comando -> . declaracao_retorno
+    (24) comando -> . declaracao_iteracao
+    (25) comando -> . declaracao_selecao
+    (26) comando -> . declaracao_composta
+    (27) comando -> . declaracao_expressao
+    (33) declaracao_retorno -> . RETURN ;
+    (34) declaracao_retorno -> . RETURN expressao ;
+    (32) declaracao_iteracao -> . WHILE ( expressao ) comando
+    (30) declaracao_selecao -> . IF ( expressao ) comando ELSE comando
+    (31) declaracao_selecao -> . IF ( expressao ) comando
+    (18) declaracao_composta -> . { declaracoes_locais lista_comandos }
+    (28) declaracao_expressao -> . ;
+    (29) declaracao_expressao -> . expressao ;
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    RETURN          shift and go to state 43
+    WHILE           shift and go to state 46
+    IF              shift and go to state 48
+    {               shift and go to state 26
+    ;               shift and go to state 44
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 45
+    comando                        shift and go to state 105
+    declaracao_retorno             shift and go to state 38
+    declaracao_iteracao            shift and go to state 39
+    declaracao_selecao             shift and go to state 40
+    declaracao_composta            shift and go to state 41
+    declaracao_expressao           shift and go to state 42
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 98
+
+    (30) declaracao_selecao -> IF ( expressao ) . comando ELSE comando
+    (31) declaracao_selecao -> IF ( expressao ) . comando
+    (23) comando -> . declaracao_retorno
+    (24) comando -> . declaracao_iteracao
+    (25) comando -> . declaracao_selecao
+    (26) comando -> . declaracao_composta
+    (27) comando -> . declaracao_expressao
+    (33) declaracao_retorno -> . RETURN ;
+    (34) declaracao_retorno -> . RETURN expressao ;
+    (32) declaracao_iteracao -> . WHILE ( expressao ) comando
+    (30) declaracao_selecao -> . IF ( expressao ) comando ELSE comando
+    (31) declaracao_selecao -> . IF ( expressao ) comando
+    (18) declaracao_composta -> . { declaracoes_locais lista_comandos }
+    (28) declaracao_expressao -> . ;
+    (29) declaracao_expressao -> . expressao ;
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    RETURN          shift and go to state 43
+    WHILE           shift and go to state 46
+    IF              shift and go to state 48
+    {               shift and go to state 26
+    ;               shift and go to state 44
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 45
+    comando                        shift and go to state 106
+    declaracao_retorno             shift and go to state 38
+    declaracao_iteracao            shift and go to state 39
+    declaracao_selecao             shift and go to state 40
+    declaracao_composta            shift and go to state 41
+    declaracao_expressao           shift and go to state 42
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 99
+
+    (38) variavel -> ID [ expressao ] .
+    ASSIGN          reduce using rule 38 (variavel -> ID [ expressao ] .)
+    TIMES           reduce using rule 38 (variavel -> ID [ expressao ] .)
+    DIVIDE          reduce using rule 38 (variavel -> ID [ expressao ] .)
+    NE              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    EQ              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    GT              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    GE              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    LT              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    LE              reduce using rule 38 (variavel -> ID [ expressao ] .)
+    MINUS           reduce using rule 38 (variavel -> ID [ expressao ] .)
+    PLUS            reduce using rule 38 (variavel -> ID [ expressao ] .)
+    ;               reduce using rule 38 (variavel -> ID [ expressao ] .)
+    )               reduce using rule 38 (variavel -> ID [ expressao ] .)
+    ]               reduce using rule 38 (variavel -> ID [ expressao ] .)
+    ,               reduce using rule 38 (variavel -> ID [ expressao ] .)
+
+
+state 100
+
+    (60) ativacao -> ID ( argumentos ) .
+    TIMES           reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    DIVIDE          reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    NE              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    EQ              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    GT              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    GE              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    LT              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    LE              reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    MINUS           reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    PLUS            reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    ;               reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    )               reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    ]               reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+    ,               reduce using rule 60 (ativacao -> ID ( argumentos ) .)
+
+
+state 101
+
+    (63) lista_argumentos -> expressao aux5 .
+    )               reduce using rule 63 (lista_argumentos -> expressao aux5 .)
+
+
+state 102
+
+    (64) aux5 -> empty .
+    )               reduce using rule 64 (aux5 -> empty .)
+
+
+state 103
+
+    (65) aux5 -> , . expressao aux5
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 107
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 104
+
+    (53) aux6 -> mult fator aux6 .
+    NE              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    EQ              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    GT              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    GE              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    LT              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    LE              reduce using rule 53 (aux6 -> mult fator aux6 .)
+    MINUS           reduce using rule 53 (aux6 -> mult fator aux6 .)
+    PLUS            reduce using rule 53 (aux6 -> mult fator aux6 .)
+    ;               reduce using rule 53 (aux6 -> mult fator aux6 .)
+    )               reduce using rule 53 (aux6 -> mult fator aux6 .)
+    ]               reduce using rule 53 (aux6 -> mult fator aux6 .)
+    ,               reduce using rule 53 (aux6 -> mult fator aux6 .)
+
+
+state 105
+
+    (32) declaracao_iteracao -> WHILE ( expressao ) comando .
+    }               reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    RETURN          reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    WHILE           reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    IF              reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    {               reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    ;               reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    ID              reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    NUMBER          reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    (               reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+    ELSE            reduce using rule 32 (declaracao_iteracao -> WHILE ( expressao ) comando .)
+
+
+state 106
+
+    (30) declaracao_selecao -> IF ( expressao ) comando . ELSE comando
+    (31) declaracao_selecao -> IF ( expressao ) comando .
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 108
+    }               reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    RETURN          reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    WHILE           reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    IF              reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    {               reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    ;               reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    ID              reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    NUMBER          reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+    (               reduce using rule 31 (declaracao_selecao -> IF ( expressao ) comando .)
+
+
+state 107
+
+    (65) aux5 -> , expressao . aux5
+    (64) aux5 -> . empty
+    (65) aux5 -> . , expressao aux5
+    (2) empty -> .
+    ,               shift and go to state 103
+    )               reduce using rule 2 (empty -> .)
+
+    aux5                           shift and go to state 109
+    empty                          shift and go to state 102
+
+state 108
+
+    (30) declaracao_selecao -> IF ( expressao ) comando ELSE . comando
+    (23) comando -> . declaracao_retorno
+    (24) comando -> . declaracao_iteracao
+    (25) comando -> . declaracao_selecao
+    (26) comando -> . declaracao_composta
+    (27) comando -> . declaracao_expressao
+    (33) declaracao_retorno -> . RETURN ;
+    (34) declaracao_retorno -> . RETURN expressao ;
+    (32) declaracao_iteracao -> . WHILE ( expressao ) comando
+    (30) declaracao_selecao -> . IF ( expressao ) comando ELSE comando
+    (31) declaracao_selecao -> . IF ( expressao ) comando
+    (18) declaracao_composta -> . { declaracoes_locais lista_comandos }
+    (28) declaracao_expressao -> . ;
+    (29) declaracao_expressao -> . expressao ;
+    (35) expressao -> . expressao_simples
+    (36) expressao -> . variavel ASSIGN expressao
+    (39) expressao_simples -> . soma_expressao
+    (40) expressao_simples -> . soma_expressao op_relacional soma_expressao
+    (37) variavel -> . ID
+    (38) variavel -> . ID [ expressao ]
+    (47) soma_expressao -> . termo
+    (48) soma_expressao -> . soma_expressao soma termo
+    (51) termo -> . fator aux6
+    (56) fator -> . NUMBER
+    (57) fator -> . ativacao
+    (58) fator -> . variavel
+    (59) fator -> . ( expressao )
+    (60) ativacao -> . ID ( argumentos )
+    RETURN          shift and go to state 43
+    WHILE           shift and go to state 46
+    IF              shift and go to state 48
+    {               shift and go to state 26
+    ;               shift and go to state 44
+    ID              shift and go to state 52
+    NUMBER          shift and go to state 55
+    (               shift and go to state 47
+
+    expressao                      shift and go to state 45
+    comando                        shift and go to state 110
+    declaracao_retorno             shift and go to state 38
+    declaracao_iteracao            shift and go to state 39
+    declaracao_selecao             shift and go to state 40
+    declaracao_composta            shift and go to state 41
+    declaracao_expressao           shift and go to state 42
+    expressao_simples              shift and go to state 49
+    variavel                       shift and go to state 50
+    soma_expressao                 shift and go to state 51
+    termo                          shift and go to state 53
+    fator                          shift and go to state 54
+    ativacao                       shift and go to state 56
+
+state 109
+
+    (65) aux5 -> , expressao aux5 .
+    )               reduce using rule 65 (aux5 -> , expressao aux5 .)
+
+
+state 110
+
+    (30) declaracao_selecao -> IF ( expressao ) comando ELSE comando .
+    }               reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    RETURN          reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    WHILE           reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    IF              reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    {               reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    ;               reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    ID              reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    NUMBER          reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    (               reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+    ELSE            reduce using rule 30 (declaracao_selecao -> IF ( expressao ) comando ELSE comando .)
+
+
+Conflicts:
+
+shift/reduce conflict for ELSE in state 106 resolved as shift

@@ -56,6 +56,9 @@ class Declaration(Expr):
 
 
 class ParserAnalysis(Parser):
+    # Parser Debugin
+    # debugfile = 'parser.out'
+
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -93,6 +96,13 @@ class ParserAnalysis(Parser):
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
+    @_('tipo ID "[" NUMBER "]" error')
+    def declaracao_variaveis(self, p):
+        print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
+
+    @_('tipo ID error')
+    def declaracao_variaveis(self, p):
+        print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2]
@@ -217,16 +227,15 @@ class ParserAnalysis(Parser):
     def soma(self, p):
         return p[0]
 
-    @_('fator aux6')
+    @_("termo mult fator")
+    def termo(self, p):
+        return 'Termo: ', p[0], p[1], p[2]
+    @_("termo error fator")
+    def termo(self, p):
+        print("Syntax error at line {}.".format(getattr(p[1], 'lineno', 0)))
+    @_('fator')
     def termo(self, p):
         return p[0]
-    @_('mult fator aux6')
-    def aux6(self, p):
-        return p[0], p[1]
-    @_('empty')
-    def aux6(self, p):
-        pass
-
 
     @_('DIVIDE', 'TIMES')
     def mult(self, p):
@@ -258,45 +267,18 @@ class ParserAnalysis(Parser):
     def aux5(self, p):
         pass
 
-    # @_('error')
-    # def statement(self, p):
-    #     print("Bad expression")
-
-    # print(tokens)
-    def error(self, p): # Get the next token
-        while True:
-            p = next(self.tokens, None)  # Get the next token
-            print(p)
-            if not p or p.type == 'SEMI':
-                print("Syntax error at line {} and token {}".format(p.lineno, p.value))
-                break
-            # self.errok()
-        return p
-        # while p.lineno is not EOFError:
-        #     if not p:
-        #         break
-        #     else:
-        #         print("Syntax error at line {} and token {}".format(p.lineno, p.value))
-        #         tok = next(self.tokens, None)
-        #     p.lineno += 1
-        #     print("{}".format(p.index))
-        #
-        #     # print("{}".format(p.type))
-        #     # self.errok()
-        # else:
-        #     pass
-        # p.index += 1
-        # pass
     # def error(self, tok):
     #     # Read ahead looking for a terminating ";"
+    #     lineno = getattr(tok, 'lineno', 0)
+    #
+    #     print("Syntax error at line {}, and value {}".format(lineno, tok.value))
     #     while True:
     #         tok = next(self.tokens, None)  # Get the next token
-    #         print("{}".format(tok))
-    #         # if not tok or tok.type == 'SEMI':
-    #         #     break
-    #         self.errok()
-    #
+    #         if not tok or tok.type == 'SEMI':
+    #              break
+    #         # self.errok()
     #     # Return SEMI to the parser as the next lookahead token
+    #     self.restart()
     #     return tok
 
 def main():
