@@ -24,47 +24,27 @@
         ],
         [
           "Lista_Comandos: ",
-          [
-            "Lista_Comandos: ",
-            null,
-            [
-              "Comando: ",
-              [
-                "Declaracao_Expressao: ",
-                [
-                  "Expressao: ",
-                  [
-                    "Variavel: ",
-                    "x"
-                  ],
-                  "=",
-                  [
-                    "Expressao: ",
-                    [
-                      "Expr_Simples: ",
-                      [
-                        "Soma_Expressao: ",
-                        20,
-                        "+",
-                        10
-                      ]
-                    ]
-                  ]
-                ],
-                ";"
-              ]
-            ]
-          ],
+          null,
           [
             "Comando: ",
             [
-              "Declaracao_Retorno: ",
-              "return",
+              "Declaracao_Expressao: ",
               [
                 "Expressao: ",
                 [
-                  "Expr_Simples: ",
-                  0
+                  "Variavel: ",
+                  "u"
+                ],
+                "=",
+                [
+                  "Expressao: ",
+                  [
+                    "Expr_Simples: ",
+                    [
+                      "Variavel: ",
+                      "x"
+                    ]
+                  ]
                 ]
               ],
               ";"

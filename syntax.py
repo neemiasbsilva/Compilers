@@ -258,11 +258,51 @@ class ParserAnalysis(Parser):
     def aux5(self, p):
         pass
 
+    # @_('error')
+    # def statement(self, p):
+    #     print("Bad expression")
+
+    # print(tokens)
+    def error(self, p): # Get the next token
+        while True:
+            p = next(self.tokens, None)  # Get the next token
+            print(p)
+            if not p or p.type == 'SEMI':
+                print("Syntax error at line {} and token {}".format(p.lineno, p.value))
+                break
+            # self.errok()
+        return p
+        # while p.lineno is not EOFError:
+        #     if not p:
+        #         break
+        #     else:
+        #         print("Syntax error at line {} and token {}".format(p.lineno, p.value))
+        #         tok = next(self.tokens, None)
+        #     p.lineno += 1
+        #     print("{}".format(p.index))
+        #
+        #     # print("{}".format(p.type))
+        #     # self.errok()
+        # else:
+        #     pass
+        # p.index += 1
+        # pass
+    # def error(self, tok):
+    #     # Read ahead looking for a terminating ";"
+    #     while True:
+    #         tok = next(self.tokens, None)  # Get the next token
+    #         print("{}".format(tok))
+    #         # if not tok or tok.type == 'SEMI':
+    #         #     break
+    #         self.errok()
+    #
+    #     # Return SEMI to the parser as the next lookahead token
+    #     return tok
 
 def main():
     lexer = LexerAnalysis()
     parser = ParserAnalysis()
-    file = open('Inputs/mdc.in', 'r')
+    file = open('Inputs/sample.in', 'r')
     while True:
         try:
             data = str()
@@ -275,7 +315,7 @@ def main():
             result = parser.parse(lexer.tokenize(data))
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
-            f = open('Outputs/mdc.out', 'w')
+            f = open('Outputs/sample.out', 'w')
             f.write(str(json_str))
             f.close()
             break
