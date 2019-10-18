@@ -2,7 +2,7 @@ int main(void){
     int x x
     x = 20+10;
     x = 20+z;
-    int u
+    int u x = 20+10;
     z = u;
     return 0;
 }
