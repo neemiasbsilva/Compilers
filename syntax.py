@@ -96,16 +96,21 @@ class ParserAnalysis(Parser):
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
-    @_('tipo ID "[" NUMBER "]" error')
-    def declaracao_variaveis(self, p):
-        print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
+    # @_('tipo ID "[" NUMBER "]" error')
+    # def declaracao_variaveis(self, p):
+    #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
 
-    @_('tipo ID error')
-    def declaracao_variaveis(self, p):
-        print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2]
+    @_('tipo ID error')
+    def declaracao_variaveis(self, p):
+        print("error: {}".format(p[2]))
+    # @_('tipo ID')
+    # def declaracao_variaveis(self, p):
+    #     # print("error: {}".format(p[1]))
+    #     print("Syntax error at line {}.".format(getattr(p[1], 'lineno', 0)))
+    #     # print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
 
 
     @_('INT', 'VOID')
@@ -160,7 +165,6 @@ class ParserAnalysis(Parser):
        'declaracao_retorno')
     def comando(self, p):
         return 'Comando: ',p[0]
-
     @_('expressao ";"')
     def declaracao_expressao(self, p):
         return 'Declaracao_Expressao: ', p[0], p[1]
@@ -168,13 +172,14 @@ class ParserAnalysis(Parser):
     def declaracao_expressao(self, p):
         return 'Declaracao_Expressao: ', p[0]
 
-    @_('IF "(" expressao ")" comando')
-    def declaracao_selecao(self, p):
-        return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
 
     @_('IF "(" expressao ")" comando ELSE comando')
     def declaracao_selecao(self, p):
         return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
+    @_('IF "(" expressao ")" comando')
+    def declaracao_selecao(self, p):
+        return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
+
 
     @_('WHILE "(" expressao ")" comando')
     def declaracao_iteracao(self, p):
@@ -192,7 +197,6 @@ class ParserAnalysis(Parser):
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
         return 'Expressao: ', p[0], p[1], p[2]
-
     @_('expressao_simples')
     def expressao(self, p):
         return 'Expressao: ', p[0]
@@ -207,7 +211,9 @@ class ParserAnalysis(Parser):
     @_('soma_expressao op_relacional soma_expressao')
     def expressao_simples(self, p):
         return 'Expressao_Simples: ', p[0], p[1], p[2]
-
+    # @_('soma_expressao error soma_expressao')
+    # def expressao_simples(self, p):
+    #     print("error: {}".format(p[1]))
     @_('soma_expressao')
     def expressao_simples(self, p):
         return 'Expr_Simples: ', p[0]
@@ -230,9 +236,9 @@ class ParserAnalysis(Parser):
     @_("termo mult fator")
     def termo(self, p):
         return 'Termo: ', p[0], p[1], p[2]
-    @_("termo error fator")
-    def termo(self, p):
-        print("Syntax error at line {}.".format(getattr(p[1], 'lineno', 0)))
+    # @_("termo error fator")
+    # def termo(self, p):
+    #     print("Syntax error at line {}.".format(getattr(p[1], 'lineno', 0)))
     @_('fator')
     def termo(self, p):
         return p[0]

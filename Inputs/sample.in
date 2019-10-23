@@ -1,8 +1,11 @@
 int main(void){
-    int x x
+    /*int x x */
     x = 20+10;
     x = 20+z;
-    int u x = 20+10;
+    int u
+    c x = 20 + 10;
+    x = 20+10;
+
     z = u;
     return 0;
 }
