@@ -1,0 +1,4 @@
+yacc: Syntax error at line 3, token=ID
+Line 3: Bad character '.'
+Line 3: Bad character '@'
+Line 3: Bad character '.'
