@@ -304,7 +304,8 @@ def main():
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
             f = open('Outputs/allofsymbols.out', 'w')
-            f.write(str(json_str)))
+            f.write(str(json_str))
+            f.close()
 
             break
 

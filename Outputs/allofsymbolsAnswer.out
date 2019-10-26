@@ -1,0 +1,2 @@
+yacc: Syntax error at line 17, token=ID
+error: Token(type='ID', value='x', lineno=17, index=250)
