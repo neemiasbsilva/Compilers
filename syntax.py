@@ -290,7 +290,7 @@ class ParserAnalysis(Parser):
 def main():
     lexer = LexerAnalysis()
     parser = ParserAnalysis()
-    file = open('Inputs/allofsymbols.in', 'r')
+    file = open('Inputs/sample.in', 'r')
     while True:
         try:
             data = str()
@@ -303,7 +303,7 @@ def main():
             result = parser.parse(lexer.tokenize(data))
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
-            f = open('Outputs/allofsymbols.out', 'w')
+            f = open('Outputs/sample.out', 'w')
             f.write(str(json_str))
             f.close()
 
