@@ -3,6 +3,7 @@ from sly import Parser
 from lexer import LexerAnalysis
 from anytree import Node, RenderTree
 from anytree.importer import JsonImporter
+import sys
 
 import json
 importer = JsonImporter()
@@ -290,7 +291,7 @@ class ParserAnalysis(Parser):
 def main():
     lexer = LexerAnalysis()
     parser = ParserAnalysis()
-    file = open('Inputs/listofemails.in', 'r')
+    file = open('Inputs/' + sys.argv[1] + '.in', 'r')
     while True:
         try:
             data = str()
@@ -303,7 +304,7 @@ def main():
             result = parser.parse(lexer.tokenize(data))
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
-            f = open('Outputs/listofemails.out', 'w')
+            f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
             f.write(str(json_str))
             f.close()
 
