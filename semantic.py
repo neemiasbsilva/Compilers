@@ -170,7 +170,12 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        return 'Soma_Expressao: ', p[0], p[1], p[2]
+        sum = int()
+        if p[1] == "+" and p[1]:
+            sum = int(p[0]) + int(p[2])
+        else:
+            sum = int(p[0]) - int(p[2])
+        return 'Soma_Expressao: ', sum
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -213,20 +218,6 @@ class ParserAnalysis(Parser):
     def lista_argumentos(self, p):
         return p[0]
 
-    # def error(self, tok):
-    #     # Read ahead looking for a terminating ";"
-    #     lineno = getattr(tok, 'lineno', 0)
-    #
-    #     print("Syntax error at line {}, and value {}".format(lineno, tok.value))
-    #     while True:
-    #         tok = next(self.tokens, None)  # Get the next token
-    #         if not tok or tok.type == 'SEMI':
-    #              break
-    #         # self.errok()
-    #     # Return SEMI to the parser as the next lookahead token
-    #     self.restart()
-    #     return tok
-
 def main():
     lexer = LexerAnalysis()
     parser = ParserAnalysis()
@@ -243,14 +234,12 @@ def main():
             result = parser.parse(lexer.tokenize(data))
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
-            f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
-            f.write(str(json_str))
-            f.close()
-
+            # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
+            # f.write(str(json_str))
+            # f.close()
+            print(json_str)
             break
 
 
 if __name__ == '__main__':
     main()
-    #for pre, fill, node in RenderTree(program):
-    #    print("%s%s" % (pre, node.name))
