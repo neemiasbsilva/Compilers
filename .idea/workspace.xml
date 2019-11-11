@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b6bf363-8cc3-44a4-977e-71af9fbda100" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Inputs/semantic_sample.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/semantic.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +90,7 @@
       <workItem from="1571776290951" duration="38000" />
       <workItem from="1571853016050" duration="3960000" />
       <workItem from="1572062208768" duration="797000" />
-      <workItem from="1573064568099" duration="1546000" />
+      <workItem from="1573064568099" duration="2037000" />
     </task>
     <servers />
   </component>
