@@ -11,17 +11,8 @@ import json
 class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
-<<<<<<< HEAD
     declarations = 0
     H = HashTable()
-=======
-<<<<<<< HEAD
-    declarations = 0
-=======
-
->>>>>>> developer
-    H = MyHashTable()
->>>>>>> origin/master
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -55,11 +46,7 @@ class ParserAnalysis(Parser):
        'declaracao_funcoes')
     def declaracao(self, p):
         self.declarations += 1
-<<<<<<< HEAD
         return 'Declaracao', p[0]
-=======
-        return 'Declaracao: ', p[0]
->>>>>>> origin/master
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
@@ -257,21 +244,12 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-<<<<<<< HEAD
             print(parser.H.find('var'))
             print(parser.H.find('s'))
             print(parser.H.find('x'))
             print(parser.H.hash('s'))
             if parser.declarations == 0:
                 print("Semantic Error, You need to implement one or more of declaration list!!!")
-=======
-<<<<<<< HEAD
-            if parser.declarations == 0:
-                print("Semantic Error, You need to implement one or more of declaration list!!!")
-=======
->>>>>>> developer
-            print(parser.H[20])
->>>>>>> origin/master
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
