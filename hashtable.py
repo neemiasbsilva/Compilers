@@ -1,56 +1,62 @@
-class MyHashTable:
+class HashNode:
+    def __init__(self, key, value):
+        self.next = None
+        self.key = key
+        self.value = value
+
+
+class HashTable:
     def __init__(self):
-        self.size = 1000
-        self.positions = [None] * self.size
-        self.values = [None] * self.size
+        self.table = [None] * 101
 
-    def put(self,key,value):
-      hashvalue = self.hashfn(key,len(self.positions))
+    def hash(self, key):
+        # Generate hash from key.
+        # Time O(N), Space O(1), where N is the length of key.
+        hashed = 0
+        for i in range(len(key)):
+            hashed = (256 * hashed + ord(key[i])) % 101
+        return hashed
 
-      if self.positions[hashvalue] == None:
-        self.positions[hashvalue] = key
-        self.values[hashvalue] = value
-      else:
-        if self.positions[hashvalue] == key:
-          self.values[hashvalue] = value #replace
+    def add(self, key, value):
+        # Add key, value.
+        # Time O(1), Space O(1), where N is the num of elements in hashtable.
+        bucket = self.hash(key)
+        if not self.table[bucket]:
+            self.table[bucket] = HashNode(key, value)
         else:
-          nextposition = self.rehash(hashvalue,len(self.positions))
-          while self.positions[nextposition] != None and \
-                          self.positions[nextposition] != key:
-            nextposition = self.rehash(nextposition,len(self.positions))
+            temp = self.table[bucket]
+            while temp.next:
+                temp = temp.next
+            temp.next = HashNode(key, value)
 
-          if self.positions[nextposition] == None:
-            self.positions[nextposition]=key
-            self.values[nextposition]=value
-          else:
-            self.values[nextposition] = value #replace
+    def find(self, key):
+        # Find value from key.
+        # Time O(1), Space O(1), where N is the num of elements in hashtable.
+        bucket = self.hash(key)
+        if not self.table[bucket]:
+            return False
+        else:
+            temp = self.table[bucket]
+            while temp:
+                if temp.key == key:
+                    return temp.value
+                temp = temp.next
+            return False
 
-    def hashfn(self,key,size):
-         return key%size
-
-    def rehash(self,oldhash,size):
-        return (oldhash+1)%size
-
-    def get(self,key):
-      startposition = self.hashfn(key,len(self.positions))
-
-      value = None
-      stop = False
-      found = False
-      position = startposition
-      while self.positions[position] != None and  \
-                           not found and not stop:
-         if self.positions[position] == key:
-           found = True
-           value = self.values[position]
-         else:
-           position=self.rehash(position,len(self.positions))
-           if position == startposition:
-               stop = True
-      return value
-
-    def __getitem__(self,key):
-        return self.get(key)
-
-    def __setitem__(self,key,value):
-        self.put(key,value)
+    def delete(self, key):
+        # Delete key, value.
+        # Time O(1), Space O(1), where N is the num of elements in hashtable.
+        bucket = self.hash(key)
+        if not self.table[bucket]:
+            return False
+        else:
+            if self.table[bucket].key == key:
+                self.table[bucket] = None
+            else:
+                temp = self.table[bucket]
+                while temp:
+                    if temp.next.key == key:
+                        temp.next = temp.next.next
+                        return
+                    temp = temp.next
+                return False
