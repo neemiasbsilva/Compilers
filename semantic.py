@@ -123,15 +123,15 @@ class ParserAnalysis(Parser):
         return 'Comando: ',p[0]
     @_('expressao ";"')
     def declaracao_expressao(self, p):
-        return 'Declaracao_Expressao: ', p[0], p[1]
+        return 'Declaracao_Expressao', p[0], p[1]
     @_('";"')
     def declaracao_expressao(self, p):
-        return 'Declaracao_Expressao: ', p[0]
+        return 'Declaracao_Expressao', p[0]
 
 
     @_('IF "(" expressao ")" comando ELSE comando')
     def declaracao_selecao(self, p):
-        return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
+        return 'Declaracao_Selecao', p[0], p[1], p[2], p[3], p[4]
     @_('IF "(" expressao ")" comando')
     def declaracao_selecao(self, p):
         return 'Declaracao_Selecao: ', p[0], p[1], p[2], p[3], p[4]
@@ -139,27 +139,27 @@ class ParserAnalysis(Parser):
 
     @_('WHILE "(" expressao ")" comando')
     def declaracao_iteracao(self, p):
-        return 'Declaracao_Iteracao: ', p[0], p[1], p[2], p[3], p[4]
+        return 'Declaracao_Iteracao', p[0], p[1], p[2], p[3], p[4]
 
 
     @_('RETURN expressao ";"')
     def declaracao_retorno(self, p):
-        return 'Declaracao_Retorno: ', p[0], p[1], p[2]
+        return 'Declaracao_Retorno', p[0], p[1], p[2]
     @_('RETURN ";"')
     def declaracao_retorno(self, p):
-        return 'Declaracao_Retorno: ', p[0], p[1]
+        return 'Declaracao_Retorno', p[0], p[1]
 
 
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
-        return 'Expressao: ', p[0], p[1], p[2]
+        return 'Expressao', p[0], p[1], p[2]
     @_('expressao_simples')
     def expressao(self, p):
-        return 'Expressao: ', p[0]
+        return 'Expressao', p[0]
 
     @_('ID "[" expressao "]"')
     def variavel(self, p):
-        return 'Variavel: ', p[0], p[1], p[2], p[3]
+        return 'Variavel', p[0], p[1], p[2], p[3]
     @_('ID')
     def variavel(self, p):
         return 'Variavel: ', p[0]
@@ -176,7 +176,7 @@ class ParserAnalysis(Parser):
 
     @_('LE', 'LT', 'GE', 'GT', 'EQ', 'NE')
     def op_relacional(self, p):
-        return 'Op_Relacional: ', p[0]
+        return 'Op_Relacional', p[0]
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
@@ -187,7 +187,7 @@ class ParserAnalysis(Parser):
         #     sum = int(p[0]) - int(p[2])
 
         # self.H.add(p[0], sum)
-        return 'Soma_Expressao: ', p[0], p[1], p[2]
+        return 'Soma_Expressao', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -198,14 +198,14 @@ class ParserAnalysis(Parser):
 
     @_("termo mult fator")
     def termo(self, p):
-        return 'Termo: ', p[0], p[1], p[2]
+        return 'Termo', p[0], p[1], p[2]
     @_('fator')
     def termo(self, p):
         return p[0]
 
     @_('DIVIDE', 'TIMES')
     def mult(self, p):
-        return 'Mult: ', p[0]
+        return 'Mult', p[0]
 
     @_('"(" expressao ")"')
     def fator(self, p):
