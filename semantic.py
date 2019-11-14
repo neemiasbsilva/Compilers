@@ -1,16 +1,17 @@
 from pip._internal import operations
 from sly import Parser
 from lexer import LexerAnalysis
+from hashtable import MyHashTable
 from anytree import Node, RenderTree
 from anytree.importer import JsonImporter
 import sys
 
 import json
-
 class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
 
+    H = MyHashTable()
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -47,6 +48,7 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
+        self.H[20] = (p[0], p[1], p[2], p[3], p[4], p[5])
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
     # @_('tipo ID "[" NUMBER "]" error')
     # def declaracao_variaveis(self, p):
@@ -170,12 +172,12 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        sum = int()
-        if p[1] == "+" and p[1]:
-            sum = int(p[0]) + int(p[2])
-        else:
-            sum = int(p[0]) - int(p[2])
-        return 'Soma_Expressao: ', sum
+        # sum = int()
+        # if p[1] == "+" and p[1]:
+        #     sum = int(p[0]) + int(p[2])
+        # else:
+        #     sum = int(p[0]) - int(p[2])
+        return 'Soma_Expressao: ', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -232,12 +234,13 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
+            print(parser.H[20])
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
             # f.write(str(json_str))
             # f.close()
-            print(json_str)
+            # print(json_str)
             break
 
 
