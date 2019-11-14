@@ -1,0 +1,18 @@
+Key: x hash: {'type': 'int', 'value': 'None', 'size': ']'}
+Key: i hash: {'type': 'int', 'value': 'None'}
+Key: x hash: {'type': 'int', 'value': 'None', 'size': ']'}
+Key: k hash: {'type': 'int', 'value': 'None'}
+Key: k hash: {'type': 'int', 'value': 'low'}
+Key: x hash: {'type': 'int', 'value': ('a', '[', 'low', ']'), 'size': ']'}
+Key: i hash: {'type': 'int', 'value': ('low', '+', 1)}
+Key: x hash: {'type': 'int', 'value': ('a', '[', 'i', ']'), 'size': ']'}
+Key: k hash: {'type': 'int', 'value': 'i'}
+Key: i hash: {'type': 'int', 'value': ('i', '+', 1)}
+Key: minloc hash: {'type': 'int', 'Param': ('Lista_Parametros: ', ('Lista_Parametros: ', ('Param: ', 'int', 'a', '['), ',', ('Param: ', 'int', 'low')), ',', ('Param: ', 'int', 'high')), 'return': 'k'}
+Key: i hash: {'type': 'int', 'value': ('i', '+', 1)}
+Key: k hash: {'type': 'int', 'value': 'i'}
+Key: i hash: {'type': 'int', 'value': 'low'}
+Key: t hash: {'type': 'int', 'value': 'None'}
+error: Token(type='ID', value='high', lineno=27, index=415)
+Key: i hash: {'type': 'int', 'value': 'low'}
+Key: i hash: {'type': 'int', 'value': 0}

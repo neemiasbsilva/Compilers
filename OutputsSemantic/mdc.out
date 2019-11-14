@@ -1,0 +1,8 @@
+Key: mdc hash: {'type': 'int', 'Param': ('Lista_Parametros: ', ('Param: ', 'int', 'u'), ',', ('Param: ', 'int', 'v')), 'return': 'if'}
+Key: x hash: {'type': 'int', 'value': 'None'}
+Key: y hash: {'type': 'int', 'value': 'None'}
+Key: z hash: {'type': 'int', 'value': 'None'}
+Key: x hash: {'type': 'int', 'value': 5}
+Key: y hash: {'type': 'int', 'value': 10}
+Key: z hash: {'type': 'int', 'value': ('Ativacao', 'mdc', '(', ('Argumentos', ('Lista_Argumentos', 'x', ',', 'y')), ')')}
+Key: main hash: {'type': 'void', 'Param': 'void', 'return': 'None'}

@@ -1,0 +1,6 @@
+Key: x hash: {'type': 'int', 'value': 'None'}
+Key: s hash: {'type': 'int', 'value': 'None'}
+Key: x hash: {'type': 'int', 'value': (2, '+', 5)}
+Key: x hash: {'type': 'int', 'value': ('x', '+', 3)}
+Key: s hash: {'type': 'int', 'value': (2, '+', 3)}
+Key: main hash: {'type': 'int', 'Param': 'void', 'return': 0}
