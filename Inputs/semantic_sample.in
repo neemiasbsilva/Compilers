@@ -1,6 +1,8 @@
 int main(void) {
     int x;
+    int s;
     x = 2 + 5;
-
+    s = 2 + 3;
+    /*void z;*/
     return 0;
 }

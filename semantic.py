@@ -52,16 +52,18 @@ class ParserAnalysis(Parser):
     def declaracao_variaveis(self, p):
         # HashNode(20, (p[0], p[1], p[2], p[3], p[4], p[5]))
         self.H.add('var_matrix', (p[0], p[1], p[2], p[3], p[4], p[5]))
+        if p[0] != 'int':
+            print("Semantic Error, Variable accept only type (int)!!!")
+            exit()
         return 'DeclVarMat', p[0], p[1], p[2], p[3], p[4], p[5]
-    # @_('tipo ID "[" NUMBER "]" error')
-    # def declaracao_variaveis(self, p):
-    #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
 
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
+        self.H.add(p[1], 'ID')
         self.H.add('var', (p[0], p[1], p[2]))
         if p[0] != 'int':
             print("Semantic Error, Variable accept only type (int)!!!")
+            exit()
         return 'DeclVar', p[0], p[1], p[2]
     @_('tipo ID error')
     def declaracao_variaveis(self, p):
@@ -179,10 +181,12 @@ class ParserAnalysis(Parser):
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
         # sum = int()
-        # if p[1] == "+" and p[1]:
+        # if self.H.find(p[0]) is not None and self.H.find(p[2]) is not None and p[1] == "+" and p[1]:
         #     sum = int(p[0]) + int(p[2])
-        # else:
+        # elif self.H.find(p[0]) is not None and self.H.find(p[2]) is not None:
         #     sum = int(p[0]) - int(p[2])
+
+        # self.H.add(p[0], sum)
         return 'Soma_Expressao: ', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
@@ -241,6 +245,9 @@ def main():
         if data:
             result = parser.parse(lexer.tokenize(data))
             print(parser.H.find('var'))
+            print(parser.H.find('s'))
+            print(parser.H.find('x'))
+            print(parser.H.hash('s'))
             if parser.declarations == 0:
                 print("Semantic Error, You need to implement one or more of declaration list!!!")
             #print(result)
