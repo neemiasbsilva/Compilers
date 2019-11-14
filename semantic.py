@@ -1,7 +1,8 @@
 from pip._internal import operations
 from sly import Parser
 from lexer import LexerAnalysis
-from hashtable import MyHashTable
+from hashtable import HashNode
+from hashtable import HashTable
 from anytree import Node, RenderTree
 from anytree.importer import JsonImporter
 import sys
@@ -11,7 +12,7 @@ class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
     declarations = 0
-    H = MyHashTable()
+    H = HashTable()
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -28,7 +29,7 @@ class ParserAnalysis(Parser):
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
-        return ('Programa: ', p.lista_declaracao)
+        return ('Programa', p.lista_declaracao)
 
     @_(' ')
     def empty(self, p):
@@ -36,7 +37,7 @@ class ParserAnalysis(Parser):
 
     @_('lista_declaracao declaracao')
     def lista_declaracao(self, p):
-        return "Lista_Declaracao: ", p[0], p[1]
+        return "ListaDeclaracao", p[0], p[1]
     @_('declaracao')
     def lista_declaracao(self, p):
         return p[0]
@@ -45,26 +46,30 @@ class ParserAnalysis(Parser):
        'declaracao_funcoes')
     def declaracao(self, p):
         self.declarations += 1
-        return 'Declaracao: ', p[0]
+        return 'Declaracao', p[0]
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        self.H[20] = (p[0], p[1], p[2], p[3], p[4], p[5])
-        return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
+        # HashNode(20, (p[0], p[1], p[2], p[3], p[4], p[5]))
+        self.H.add('var_matrix', (p[0], p[1], p[2], p[3], p[4], p[5]))
+        return 'DeclVarMat', p[0], p[1], p[2], p[3], p[4], p[5]
     # @_('tipo ID "[" NUMBER "]" error')
     # def declaracao_variaveis(self, p):
     #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
 
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
-        return 'Declaracao_Variaveis: ', p[0], p[1], p[2]
+        self.H.add('var', (p[0], p[1], p[2]))
+        if p[0] != 'int':
+            print("Semantic Error, Variable accept only type (int)!!!")
+        return 'DeclVar', p[0], p[1], p[2]
     @_('tipo ID error')
     def declaracao_variaveis(self, p):
         print("error: {}".format(p[2]))
 
     @_('INT', 'VOID')
     def tipo(self, p):
-        return 'Tipo: ', p[0]
+        return p[0]
 
     @_('tipo ID "(" parametros ")" declaracao_composta')
     def declaracao_funcoes(self, p):
@@ -235,7 +240,7 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-            print(parser.H[20])
+            print(parser.H.find('var'))
             if parser.declarations == 0:
                 print("Semantic Error, You need to implement one or more of declaration list!!!")
             #print(result)
