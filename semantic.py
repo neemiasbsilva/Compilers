@@ -59,8 +59,7 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
-        self.H.add(p[1], 'ID')
-        self.H.add('var', (p[0], p[1], p[2]))
+        self.H.add(p[1], {'type':p[0], 'value': 'None'})
         if p[0] != 'int':
             print("Semantic Error, Variable accept only type (int)!!!")
             exit()
@@ -152,27 +151,30 @@ class ParserAnalysis(Parser):
 
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
+        print(p[0])
+        var = self.H.find(p[0])
+        var['value'] = p[2]
         return 'Expressao', p[0], p[1], p[2]
     @_('expressao_simples')
     def expressao(self, p):
-        return 'Expressao', p[0]
+        return p[0]
 
     @_('ID "[" expressao "]"')
     def variavel(self, p):
-        return 'Variavel', p[0], p[1], p[2], p[3]
+        return p[0], p[1], p[2], p[3]
     @_('ID')
     def variavel(self, p):
-        return 'Variavel: ', p[0]
+        return p[0]
 
     @_('soma_expressao op_relacional soma_expressao')
     def expressao_simples(self, p):
-        return 'Expressao_Simples: ', p[0], p[1], p[2]
+        return p[0], p[1], p[2]
     # @_('soma_expressao error soma_expressao')
     # def expressao_simples(self, p):
     #     print("error: {}".format(p[1]))
     @_('soma_expressao')
     def expressao_simples(self, p):
-        return 'Expr_Simples: ', p[0]
+        return p[0]
 
     @_('LE', 'LT', 'GE', 'GT', 'EQ', 'NE')
     def op_relacional(self, p):
@@ -180,14 +182,21 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        # sum = int()
-        # if self.H.find(p[0]) is not None and self.H.find(p[2]) is not None and p[1] == "+" and p[1]:
-        #     sum = int(p[0]) + int(p[2])
-        # elif self.H.find(p[0]) is not None and self.H.find(p[2]) is not None:
-        #     sum = int(p[0]) - int(p[2])
+        if self.H.find(str(p[0])) is False:
+            temp1 = int(p[0])
+        else:
+            print(self.H.find(str(p[0])))
+            temp1 = int(self.H.find(str(p[0]))['value'])
+        if self.H.find(str(p[2])) is False:
+            temp2 = int(p[2])
+        else:
+            temp1 = int(self.H.find(str(p[1]))['value'])
 
-        # self.H.add(p[0], sum)
-        return 'Soma_Expressao', p[0], p[1], p[2]
+        if p[1] == "+":
+            sum = temp1 + temp2
+        else:
+            sum = temp1 - temp2
+        return str(sum)
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -217,15 +226,15 @@ class ParserAnalysis(Parser):
 
     @_('ID "(" argumentos ")"')
     def ativacao(self, p):
-        return 'Ativacao: ', p[0], p[1], p[2], p[3]
+        return 'Ativacao', p[0], p[1], p[2], p[3]
 
     @_('lista_argumentos', 'empty')
     def argumentos(self, p):
-        return 'Argumentos: ', p[0]
+        return 'Argumentos', p[0]
 
     @_('lista_argumentos "," expressao')
     def lista_argumentos(self, p):
-        return 'Lista_Argumentos: ', p.lista_argumentos, p[1], p[2]
+        return 'Lista_Argumentos', p.lista_argumentos, p[1], p[2]
     @_('expressao')
     def lista_argumentos(self, p):
         return p[0]
