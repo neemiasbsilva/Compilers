@@ -7,27 +7,11 @@ from anytree.importer import JsonImporter
 import sys
 
 import json
-<<<<<<< HEAD
-
-hash_table = [None] * 10000
-
-def hashing_func(key):
-    return key % len(hash_table)
-
-def insert(hash_table, key, value):
-    hash_key = hashing_func(key)
-    hash_table[hash_key].append(value)
 class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
-    i = 0
-=======
-class ParserAnalysis(Parser):
-    # Parser Debugin
-    # debugfile = 'parser.out'
-
+    declarations = 0
     H = MyHashTable()
->>>>>>> developer
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -44,7 +28,7 @@ class ParserAnalysis(Parser):
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
-        return {'Programa': p.lista_declaracao}
+        return ('Programa: ', p.lista_declaracao)
 
     @_(' ')
     def empty(self, p):
@@ -52,25 +36,21 @@ class ParserAnalysis(Parser):
 
     @_('lista_declaracao declaracao')
     def lista_declaracao(self, p):
-        return {"ListaDeclaracao": (p[0], p[1])}
+        return "Lista_Declaracao: ", p[0], p[1]
     @_('declaracao')
     def lista_declaracao(self, p):
-        return {"ListaDeclaracao": p[0]}
+        return p[0]
 
     @_('declaracao_variaveis',
        'declaracao_funcoes')
     def declaracao(self, p):
-        self.i += 1
-        return {'Declaracao': p[0]}
+        self.declarations += 1
+        return 'Declaracao: ', p[0]
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-<<<<<<< HEAD
-        return {"Declaracao_Variaveis": ( p[0], p[1], p[2], p[3], p[4], p[5])}
-=======
         self.H[20] = (p[0], p[1], p[2], p[3], p[4], p[5])
         return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
->>>>>>> developer
     # @_('tipo ID "[" NUMBER "]" error')
     # def declaracao_variaveis(self, p):
     #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
@@ -255,16 +235,10 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-<<<<<<< HEAD
-            if parser.i == 0:
-                print("Semantic Error; The program have one or more list declaration!!!")
-                exit()
-            print(parser.i)
-            print(result['Programa'])
-=======
+            if parser.declarations == 0:
+                print("Semantic Error, You need to implement one or more of declaration list!!!")
             print(parser.H[20])
             #print(result)
->>>>>>> developer
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
             # f.write(str(json_str))
