@@ -7,10 +7,18 @@ import sys
 
 import json
 
+hash_table = [None] * 10000
+
+def hashing_func(key):
+    return key % len(hash_table)
+
+def insert(hash_table, key, value):
+    hash_key = hashing_func(key)
+    hash_table[hash_key].append(value)
 class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
-
+    i = 0
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -27,7 +35,7 @@ class ParserAnalysis(Parser):
     # Grammar rules and actions
     @_('lista_declaracao')
     def programa(self, p):
-        return ('Programa: ', p.lista_declaracao)
+        return {'Programa': p.lista_declaracao}
 
     @_(' ')
     def empty(self, p):
@@ -35,19 +43,20 @@ class ParserAnalysis(Parser):
 
     @_('lista_declaracao declaracao')
     def lista_declaracao(self, p):
-        return "Lista_Declaracao: ", p[0], p[1]
+        return {"ListaDeclaracao": (p[0], p[1])}
     @_('declaracao')
     def lista_declaracao(self, p):
-        return p[0]
+        return {"ListaDeclaracao": p[0]}
 
     @_('declaracao_variaveis',
        'declaracao_funcoes')
     def declaracao(self, p):
-        return 'Declaracao: ', p[0]
+        self.i += 1
+        return {'Declaracao': p[0]}
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
+        return {"Declaracao_Variaveis": ( p[0], p[1], p[2], p[3], p[4], p[5])}
     # @_('tipo ID "[" NUMBER "]" error')
     # def declaracao_variaveis(self, p):
     #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
@@ -170,12 +179,12 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        sum = int()
-        if p[1] == "+" and p[1]:
-            sum = int(p[0]) + int(p[2])
-        else:
-            sum = int(p[0]) - int(p[2])
-        return 'Soma_Expressao: ', sum
+        # sum = int()
+        # if p[1] == "+" and p[1]:
+        #     sum = int(p[0]) + int(p[2])
+        # else:
+        #     sum = int(p[0]) - int(p[2])
+        return 'Soma_Expressao: ', p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -232,12 +241,16 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-            #print(result)
+            if parser.i == 0:
+                print("Semantic Error; The program have one or more list declaration!!!")
+                exit()
+            print(parser.i)
+            print(result['Programa'])
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
             # f.write(str(json_str))
             # f.close()
-            print(json_str)
+            # print(json_str)
             break
 
 
