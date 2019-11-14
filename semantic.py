@@ -1,11 +1,13 @@
 from pip._internal import operations
 from sly import Parser
 from lexer import LexerAnalysis
+from hashtable import MyHashTable
 from anytree import Node, RenderTree
 from anytree.importer import JsonImporter
 import sys
 
 import json
+<<<<<<< HEAD
 
 hash_table = [None] * 10000
 
@@ -19,6 +21,13 @@ class ParserAnalysis(Parser):
     # Parser Debugin
     # debugfile = 'parser.out'
     i = 0
+=======
+class ParserAnalysis(Parser):
+    # Parser Debugin
+    # debugfile = 'parser.out'
+
+    H = MyHashTable()
+>>>>>>> developer
     # Get token list from the lexer (required)
     tokens = LexerAnalysis.tokens
 
@@ -56,7 +65,12 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
+<<<<<<< HEAD
         return {"Declaracao_Variaveis": ( p[0], p[1], p[2], p[3], p[4], p[5])}
+=======
+        self.H[20] = (p[0], p[1], p[2], p[3], p[4], p[5])
+        return 'Declaracao_Variaveis: ', p[0], p[1], p[2], p[3], p[4], p[5]
+>>>>>>> developer
     # @_('tipo ID "[" NUMBER "]" error')
     # def declaracao_variaveis(self, p):
     #     print("Syntax error at line {}.".format(getattr(p, 'lineno', 0)))
@@ -241,11 +255,16 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
+<<<<<<< HEAD
             if parser.i == 0:
                 print("Semantic Error; The program have one or more list declaration!!!")
                 exit()
             print(parser.i)
             print(result['Programa'])
+=======
+            print(parser.H[20])
+            #print(result)
+>>>>>>> developer
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
             # f.write(str(json_str))
