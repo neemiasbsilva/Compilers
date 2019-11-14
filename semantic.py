@@ -50,8 +50,9 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "[" NUMBER "]" ";"')
     def declaracao_variaveis(self, p):
-        # HashNode(20, (p[0], p[1], p[2], p[3], p[4], p[5]))
-        self.H.add('var_matrix', (p[0], p[1], p[2], p[3], p[4], p[5]))
+        self.H.add(p[1], {'type': p[0], 'value': 'None', 'size': p[4]})
+
+        print("Key: {} hash: {}".format(p[1], self.H.find(p[1])))
         if p[0] != 'int':
             print("Semantic Error, Variable accept only type (int)!!!")
             exit()
@@ -60,6 +61,8 @@ class ParserAnalysis(Parser):
     @_('tipo ID ";"')
     def declaracao_variaveis(self, p):
         self.H.add(p[1], {'type':p[0], 'value': 'None'})
+
+        print("Key: {} hash: {}".format(p[1], self.H.find(p[1])))
         if p[0] != 'int':
             print("Semantic Error, Variable accept only type (int)!!!")
             exit()
@@ -74,12 +77,18 @@ class ParserAnalysis(Parser):
 
     @_('tipo ID "(" parametros ")" declaracao_composta')
     def declaracao_funcoes(self, p):
+        if p[0] == "int":
+            self.H.add(p[1], {'type': p[0], 'Param': p[3], 'return': p[5][3][2][1][1]})
+        else:
+            self.H.add(p[1], {'type': p[0], 'Param': p[3], 'return': 'None'})
+
+        print("Key: {} hash: {}".format(p[1], self.H.find(p[1])))
         return 'Declaracao_Funcoes: ', p[0], p[1], p[2], p[3], p[4], p[5]
 
     @_('lista_parametros',
        'VOID')
     def parametros(self, p):
-        return 'Parmetros: ', p[0]
+        return p[0]
     @_('lista_parametros "," param')
     def lista_parametros(self, p):
         return 'Lista_Parametros: ', p[0], p[1], p[2]
@@ -143,17 +152,17 @@ class ParserAnalysis(Parser):
 
     @_('RETURN expressao ";"')
     def declaracao_retorno(self, p):
-        return 'Declaracao_Retorno', p[0], p[1], p[2]
+        return p[0], p[1], p[2]
     @_('RETURN ";"')
     def declaracao_retorno(self, p):
-        return 'Declaracao_Retorno', p[0], p[1]
+        return p[0], p[1]
 
 
     @_('variavel ASSIGN expressao')
     def expressao(self, p):
-        print(p[0])
         var = self.H.find(p[0])
         var['value'] = p[2]
+        print("Key: {} hash: {}".format(p[0], self.H.find(p[0])))
         return 'Expressao', p[0], p[1], p[2]
     @_('expressao_simples')
     def expressao(self, p):
@@ -182,21 +191,21 @@ class ParserAnalysis(Parser):
 
     @_('soma_expressao soma termo')
     def soma_expressao(self, p):
-        if self.H.find(str(p[0])) is False:
-            temp1 = int(p[0])
-        else:
-            print(self.H.find(str(p[0])))
-            temp1 = int(self.H.find(str(p[0]))['value'])
-        if self.H.find(str(p[2])) is False:
-            temp2 = int(p[2])
-        else:
-            temp1 = int(self.H.find(str(p[1]))['value'])
-
-        if p[1] == "+":
-            sum = temp1 + temp2
-        else:
-            sum = temp1 - temp2
-        return str(sum)
+        # if self.H.find(str(p[0])) is False:
+        #     temp1 = int(p[0])
+        # else:
+        #     temp1 = int(self.H.find(str(p[0]))['value'])
+        # if self.H.find(str(p[2])) is False:
+        #     temp2 = int(p[2])
+        # else:
+        #     temp1 = int(self.H.find(str(p[1]))['value'])
+        #
+        # if p[1] == "+":
+        #     sum = temp1 + temp2
+        # else:
+        #     sum = temp1 - temp2
+        # return str(sum)
+        return p[0], p[1], p[2]
     @_('termo')
     def soma_expressao(self, p):
         return p[0]
@@ -253,12 +262,9 @@ def main():
             break
         if data:
             result = parser.parse(lexer.tokenize(data))
-            print(parser.H.find('var'))
-            print(parser.H.find('s'))
-            print(parser.H.find('x'))
-            print(parser.H.hash('s'))
             if parser.declarations == 0:
                 print("Semantic Error, You need to implement one or more of declaration list!!!")
+                exit()
             #print(result)
             json_str = json.dumps(result, sort_keys=True, indent=2)
             # f = open('Outputs/'+ sys.argv[1] +'.out', 'w')
